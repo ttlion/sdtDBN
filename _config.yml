@@ -1,3 +1,5 @@
 theme: jekyll-theme-architect
+show_downloads: True
 github:
   repository_url: https://www.google.pt/
+  zip_url: https://www.google.pt/
