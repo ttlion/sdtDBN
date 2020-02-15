@@ -1,6 +1,3 @@
-# sdtDBN
-Program in Java for learning optimal tree-augmented Dynamic Bayesian Networks (tDBNs) with both dynamic and static features and to make inference in a created tDBN.
-
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/ttlion/webPage_sdtDBN/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
