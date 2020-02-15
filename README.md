@@ -106,7 +106,7 @@ usage: tDBN
                                         written to terminal.
 ```
 
-The arguments of the previous usage concern all the arguments of the tDBN program plus the new arguments of sdtDBN, for learning DBNs also with static attribute and to make inference in the learned DBN.
+The arguments of the previous usage concern all the arguments of the original tDBN program plus the new arguments of sdtDBN, for learning DBNs also with static attribute and to make inference in the learned DBN.
 
 Therefore, in this webpage it is described the usage of the following input arguments:
 ```
@@ -141,18 +141,35 @@ The usage for the arguments not in this list should be checked at the [tDBN webp
 
 ## Input files formats
 
+All input files must be given in comma-separated values (CSV) format.
+
 ### Files with dynamic attributes
 
 por aqui os inputs dynamic
+
+#### Arguments that use dynamic attributes
+
+- *-i*: This argument should be the file with the dynamic observations used to learn the DBN
+
+- *-obs*: This argument should be the file with dynamic observations of the subjects in which inference is going to be made
+
 
 ### Files with static attributes
 
 por aqui os inputs dynamic
 
+
+#### Arguments that use dynamic attributes
+
+- *-is*: This argument should be the file with the static observations used to learn the DBN. If not given, program will learn a tDBN, without static features. If given, program will learn a sdtDBN, with static and dynamic features
+
+- *-obsStatic*: This argument should be the file with static observations of the subjects in which inference is going to be made
+
 ### File with variables and respective timesteps to make inference
 
 por aqui ficheiro
 
+###### This input file refers to the argument _-inf_.
 
 ## Illustrative examples
 
