@@ -4,11 +4,11 @@ This website contains an overview on the main sdtDBN functionalities.
 
 tDBN is a Java program that creates a Dynamic Bayesian Network (DBN) from user multivariate longitudinal data, having polynomial time complexity in the number of attributes and observations. The complete implementation and functionalities of tDBN are publicly available [here](http://josemonteiro.github.io/tDBN/), being the Theorical background of tDBN explained in the following article:
 
-```
-José L Monteiro, Susana Vinga, and Alexandra M Carvalho.
-Polynomial-time algorithm for learning optimal tree-augmented dynamic Bayesian networks.
-In UAI, pages 622–631, 2015. [http://auai.org/uai2015/proceedings/papers/329.pdf](http://auai.org/uai2015/proceedings/papers/329.pdf)
-```
+
+>José L Monteiro, Susana Vinga, and Alexandra M Carvalho.
+>Polynomial-time algorithm for learning optimal tree-augmented dynamic Bayesian networks.
+>In UAI, pages 622–631, 2015. http://auai.org/uai2015/proceedings/papers/329.pdf
+
 
 tDBN only allows learning a tDBN using dynamic data and does not allow to make inference on the created DBN. sdtDBN solves this issues, being an extension of tDBN to learn a DBN using both dynamic and static data and allowing the user to make inference on the learned DBN.
 
