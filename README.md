@@ -147,6 +147,7 @@ All input files must be given in comma-separated values (CSV) format.
 
 por aqui os inputs dynamic
 
+
 #### Arguments that use dynamic attributes
 
 - *-i*: This argument should be the file with the dynamic observations used to learn the DBN
@@ -169,7 +170,9 @@ por aqui os inputs dynamic
 
 por aqui ficheiro
 
-###### This input file refers to the argument _-inf_.
+#### Argument with variables and respective timesteps to make inference
+
+- *-inf*: This argument should be the file with variables and respective timesteps to make inference
 
 ## Illustrative examples
 
