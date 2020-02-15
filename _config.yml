@@ -1,3 +1,5 @@
 theme: jekyll-theme-architect
 github:
   url: http://google.com
+  another_url: http://google.com
+title: sdtDBN
