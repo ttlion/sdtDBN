@@ -10,7 +10,7 @@ tDBN is a Java program that creates a Dynamic Bayesian Network (DBN) from user m
 >In UAI, pages 622–631, 2015. http://auai.org/uai2015/proceedings/papers/329.pdf
 
 
-tDBN only allows learning a tDBN using dynamic data and does not allow to make inference on the created DBN. sdtDBN solves this issues, being an extension of tDBN to learn a DBN using both dynamic and static data and allowing the user to make inference on the learned DBN.
+tDBN only allows learning a tDBN using dynamic data and does not allow to make inference on the created DBN. sdtDBN solves these issues, being an extension of tDBN to learn a DBN using both dynamic and static data and allowing the user to make inference on the learned DBN.
 
 # Theoretical background of sdtDBN
 
@@ -26,9 +26,9 @@ The program is currently in version 0.0.1 and can be downloaded [here](https://g
 
 Just as tDBN, the sdtDBN implementation uses two external libraries:
 
-- opencsv (for parsing CSV files);
+- [opencsv](http://opencsv.sourceforge.net/) (for parsing CSV files);
 
-- Apache Commons CLI ( for parsing command line options)
+- [Apache Commons CLI](http://commons.apache.org/proper/commons-cli/) ( for parsing command line options)
 
 
 # How to use the sdtDBN program?
