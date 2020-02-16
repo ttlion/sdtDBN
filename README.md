@@ -150,9 +150,9 @@ por aqui os inputs dynamic
 
 #### Arguments that use dynamic attributes
 
-- *-i*: This argument should be the file with the dynamic observations used to learn the DBN
+- **-i**: This argument should be the file with the dynamic observations used to learn the DBN
 
-- *-obs*: This argument should be the file with dynamic observations of the subjects in which inference is going to be made
+- **-obs**: This argument should be the file with dynamic observations of the subjects in which inference is going to be made
 
 
 ### Files with static attributes
@@ -162,9 +162,9 @@ por aqui os inputs dynamic
 
 #### Arguments that use dynamic attributes
 
-- *-is*: This argument should be the file with the static observations used to learn the DBN. If not given, program will learn a tDBN, without static features. If given, program will learn a sdtDBN, with static and dynamic features
+- **-is**: This argument should be the file with the static observations used to learn the DBN. If not given, program will learn a tDBN, without static features. If given, program will learn a sdtDBN, with static and dynamic features
 
-- *-obsStatic*: This argument should be the file with static observations of the subjects in which inference is going to be made
+- **-obsStatic**: This argument should be the file with static observations of the subjects in which inference is going to be made
 
 ### File with variables and respective timesteps to make inference
 
@@ -172,7 +172,7 @@ por aqui ficheiro
 
 #### Argument with variables and respective timesteps to make inference
 
-- *-inf*: This argument should be the file with variables and respective timesteps to make inference
+- **-inf**: This argument should be the file with variables and respective timesteps to make inference
 
 ## Illustrative examples
 
