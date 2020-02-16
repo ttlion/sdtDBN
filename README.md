@@ -16,13 +16,13 @@ tDBN only allows learning a tDBN using dynamic data and does not allow to make i
 
 sdtDBN was developed in the context of the Master's Thesis on Electrical and Computer Engineering of Tiago Leão, at Instituto Superior Técnico, Lisbon. The Thesis is available at **Aqui por ou link dps para a tese ou link para eventual artigo que se escreva**, in which all theorical background of sdtDBN is explained.
 
-# Program release and libraries
+# Program release and external libraries
 
 ## Current release
 
-The program is currently in version 0.0.1 and can be downloaded [here](https://google.com). The program comes in an executable jar and its usage is explained and exemplified i in this webpage.
+The program is currently in version 0.0.1 and can be downloaded [here](https://google.com). The program comes in an executable jar and its usage is explained and exemplified in this webpage.
 
-## Libraries
+## External libraries
 
 Just as tDBN, the sdtDBN implementation uses two external libraries:
 
