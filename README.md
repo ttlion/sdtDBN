@@ -468,6 +468,54 @@ java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m
 
 would write the previous most probable trajectories output to the newly created file [outputExample3.csv](outputExample3.csv).
 
+### Example 4 - Getting the most probable trajectory and also mamking inference of specific attributes
+
+The program allows the user to do examples 2 and 3 at the same time. For example, running:
+
+```
+java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb -t 5
+```
+
+The program would output:
+
+```
+Evaluating network with LL score.
+Number of networks with max score: 18
+Finding a maximum branching.
+Network score: -2.772588722239781
+
+-----------------
+
+b[0] -> a[1]
+a[0] -> b[1]
+
+b[1] -> a[1]
+
+x -> a[1]
+z -> b[1]
+
+
+id,a__0,b__0,a__1,b__1,a__2,b__2,a__3,b__3,a__4,b__4,a__5,b__5
+1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,1.0
+2,1.0,1.0,0.0,0.0,1.0,1.0,0.0,0.0,1.0,0.0,1.0,0.0
+3,0.0,,,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0
+
+id,a[1],a[3],b[4],b[1]
+1,0.0,0.0,1.0,1.0
+2,0.0,0.0,0.0,0.0
+3,null,0.0,1.0,1.0
+```
+
+which is the output of examples 2 and 3.
+
+The user may also specify two different output files, one to write the result of the inference on certain attributes and the other to write the output of the most probable trajectories. This is done with the arguments specified in examples 2 and 3, **-outInf** and **-tf**, respectively. For example:
+
+```
+java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb -t 5 -outInf outputExample2.csv -tf outputExample3.csv
+```
+
+would create the files [outputExample2.csv](outputExample2.csv) and [outputExample3.csv](outputExample3.csv), just as in examples 2 and 3.
+
 <!---
 # Program Eficiency
 
