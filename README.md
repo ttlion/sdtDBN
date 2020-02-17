@@ -158,7 +158,7 @@ All files with dynamic attributes should follow the following format:
 
 - Missing values should be marked either by not writing anything or by putting "?"
 
-- An example file with dynamic attributes is presented next. In this file, there are 2 attributes and 3 timesteps. There are missing values at "attX__2" and at "attY__1"
+- An example file with dynamic attributes is presented next. In this file, there are 2 attributes and 3 timesteps. There are missing values at subject 20 in "attX__2" and at subject 21 in "attY__1"
 
 ```
 id,attX__0,attY__0,attX__1,attY__1,attX__2,attY__2
@@ -175,8 +175,25 @@ id,attX__0,attY__0,attX__1,attY__1,attX__2,attY__2
 
 ### Files with static attributes
 
-por aqui os inputs dynamic
+All files with static attributes should follow the following format:
 
+- The first line should be the header, where the first value must be some identification tag and the remaining values should be each attribute name.
+  - It is important for the user to guarantee that a subject in the static file exists in the dynamic file (with the same id).
+    - Subjects in **-is** file should exist in **-i** file.
+    - Subjects in **-obsStatic** file should exist in **-obs**.
+    - There may be subjects on the dynamic files not in the respective static files, but the opposite cannot be true!
+
+- In each of the remaining lines, the first position should be the subject identifier and the remaining positions must be the values of the static attributes, in the order defined in the header line
+
+- Missing values should be marked either by not writing anything or by putting "?"
+
+- An example file with static attributes is presented next. In this file, there are 4 attributes. There are missing values at subject 20 in "attC" and at subject 21 in "attW"
+
+```
+id,attA,attC,attD,attW
+20,A,,e,0
+21,B,2,4,?
+```
 
 #### Arguments that use dynamic attributes
 
