@@ -14,7 +14,7 @@ tDBN only allows learning a tDBN using dynamic data and does not allow to make i
 
 # Theoretical background of sdtDBN
 
-sdtDBN was developed in the context of the Master's Thesis on Electrical and Computer Engineering of Tiago Leão, at Instituto Superior Técnico, Lisbon. The Thesis is available at **Aqui por ou link dps para a tese ou link para eventual artigo que se escreva**, in which all theorical background of sdtDBN is explained.
+sdtDBN was developed in the context of the Master's Thesis on Electrical and Computer Engineering of Tiago Leão, at Instituto Superior Técnico, Lisbon. The Thesis is available at **Thesis document or written article yet to be inserted here**, in which all theorical background of sdtDBN is explained.
 
 # Current release and libraries
 
