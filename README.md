@@ -269,6 +269,49 @@ would output the following graph:
 
 ![Image](fig_example1.png)
 
+To learn the parameters of the created DBN, the argument -pm can be used:
+
+```
+java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -pm
+```
+
+would obtain:
+
+
+```
+Evaluating network with LL score.
+Number of networks with max score: 18
+Finding a maximum branching.
+Network score: -2.772588722239781
+
+-----------------
+
+b[0] -> a[1]
+a[0] -> b[1]
+
+b[1] -> a[1]
+
+x -> a[1]
+z -> b[1]
+
+
+a: [0.0, 1.0]
+[x=1.0, b[0]=0.0, b[1]=0.0]: 1.000 0.000
+[x=0.0, b[0]=0.0, b[1]=0.0]: 0.000 1.000
+[x=1.0, b[0]=1.0, b[1]=0.0]: 0.000 1.000
+[x=1.0, b[0]=0.0, b[1]=1.0]: 0.500 0.500
+[x=0.0, b[0]=1.0, b[1]=0.0]: 1.000 0.000
+[x=0.0, b[0]=0.0, b[1]=1.0]: 1.000 0.000
+[x=1.0, b[0]=1.0, b[1]=1.0]: 0.500 0.500
+[x=0.0, b[0]=1.0, b[1]=1.0]: 0.000 1.000
+
+b: [0.0, 1.0]
+[z=1.0, a[0]=0.0]: 0.000 1.000
+[z=0.0, a[0]=1.0]: 1.000 0.000
+[z=0.0, a[0]=0.0]: 1.000 0.000
+[z=1.0, a[0]=1.0]: 0.500 0.500
+```
+
 ### Example 2
 
 #### Explicar o que exemplo faz
