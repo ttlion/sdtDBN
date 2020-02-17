@@ -16,7 +16,7 @@ tDBN only allows learning a tDBN using dynamic data and does not allow to make i
 
 sdtDBN was developed in the context of the Master's Thesis on Electrical and Computer Engineering of Tiago Leão, at Instituto Superior Técnico, Lisbon. The Thesis is available at **Aqui por ou link dps para a tese ou link para eventual artigo que se escreva**, in which all theorical background of sdtDBN is explained.
 
-# Program release and external libraries
+# Current release and libraries
 
 ## Current release
 
@@ -145,14 +145,32 @@ All input files must be given in comma-separated values (CSV) format.
 
 ### Files with dynamic attributes
 
-por aqui os inputs dynamic
+All files with dynamic attributes should follow the following format:
 
+- The first line should be the header, where the first value must be some identification tag and the remaining values should be each attribute name together with the proper timestep, in the form "attName__timestep"
+  
+- The order of the attributes and timesteps must conform to the following:
+  - Each timestep must have all its attributes in consecutive positions
+  - The order of the attributes must be the same in all timesteps
+  - Example for two attributes and two timesteps: attNameX__0, attNameY__0, attNameX__1, attNameY__1
+
+- In each of the remaining lines, the first position should be the subject identifier and the remaining positions must be the values of the attributes in the respective timesteps, in the order defined in the header line
+
+- Missing values should be marked either by not writing anything or by putting "?"
+
+- An example file with dynamic attributes is presented next. In this file, there are 2 attributes and 3 timesteps. There are missing values at "attX__2" and at "attY__1"
+
+```
+id,attX__0,attY__0,attX__1,attY__1,attX__2,attY__2
+20,3,-1,8,0,?,3
+21,4,2,3,,2,-8
+```
 
 #### Arguments that use dynamic attributes
 
-- **-i**: This argument should be the file with the dynamic observations used to learn the DBN
+- **-i**: This argument should be the file with the dynamic observations used to learn the DBN;
 
-- **-obs**: This argument should be the file with dynamic observations of the subjects in which inference is going to be made
+- **-obs**: This argument should be the file with dynamic observations of the subjects in which inference is going to be made.
 
 
 ### Files with static attributes
@@ -162,9 +180,9 @@ por aqui os inputs dynamic
 
 #### Arguments that use dynamic attributes
 
-- **-is**: This argument should be the file with the static observations used to learn the DBN. If not given, program will learn a tDBN, without static features. If given, program will learn a sdtDBN, with static and dynamic features
+- **-is**: This argument should be the file with the static observations used to learn the DBN. If not given, program will learn a tDBN, without static features. If given, program will learn a sdtDBN, with static and dynamic features;
 
-- **-obsStatic**: This argument should be the file with static observations of the subjects in which inference is going to be made
+- **-obsStatic**: This argument should be the file with static observations of the subjects in which inference is going to be made.
 
 ### File with variables and respective timesteps to make inference
 
@@ -172,7 +190,7 @@ por aqui ficheiro
 
 #### Argument with variables and respective timesteps to make inference
 
-- **-inf**: This argument should be the file with variables and respective timesteps to make inference
+- **-inf**: This argument should be the file with variables and respective timesteps to make inference.
 
 ## Illustrative examples
 
