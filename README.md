@@ -516,11 +516,12 @@ java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m
 
 would create the files [outputExample2.csv](outputExample2.csv) and [outputExample3.csv](outputExample3.csv), just as in examples 2 and 3.
 
-<!---
+
 # Program Eficiency
 
-Talvez meter aqui algumas experiencias com datasets grandes e a variar o numero de pais estaticos
+### TODO: Efficiency of static parents and of inference
 
+<!---
 # References
 
 Meter algumas referencias bibliograficas?
