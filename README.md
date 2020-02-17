@@ -312,19 +312,108 @@ b: [0.0, 1.0]
 [z=1.0, a[0]=1.0]: 0.500 0.500
 ```
 
-### Example 2
+### Example 2 - Inference of specific attributes on a learned DBN with dynamic and static attributes
 
-#### Explicar o que exemplo faz
+Following the DBN learned in example 1, inference can be made in that DBN. In this example, it is explained how to do inference on a specific attribute at a specific timestep.
+
+The files used for this example are the following:
+
+- [example1_dynamic](example1_dynamic.csv): The file with dynamic attributes for learning
+- [example1_static](example1_static.csv): The file with static attributes for learning
+- [example2_dynamic_inf](example2_dynamic_inf.csv): The file with the dynamic observations of the subjects where inference is to be made
+- [example2_static_inf](example2_static_inf.csv): The file with the static observations of the subjects where inference is to be made
+- [example2_infVars](example2_infVars.csv): The file with the dynamic attributes and respective timesteps where the user desires to make inference for the given subjects
+
+When making inference, one of two options can be selected with the argument **-infFmt**:
+
+- **-infFmt mostProb**: This mode will present, for each attribute\[timestep\] where inference was defined (file example2_dynamic_inf), the most probable value for each subject specified (files example2_static_inf and example2_infVars).
+
+- **-infFmt distrib**: This mode will present, for each attribute\[timestep\] where inference was defined (file example2_dynamic_inf), the conditional distribution of the learned network, for each subject specified (files example2_static_inf and example2_infVars).
+
+If there are cases where inference is not possible because the parent nodes values are not given in the observations files and cannot be determined by the model, the program will inform that inference is not possible on those specific cases.
+
+If specifying **-infFmt mostProb**, the following command line should be inserted:
+
+```
+java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb
+```
+
+getting the following output:
+
+```
+Evaluating network with LL score.
+Number of networks with max score: 18
+Finding a maximum branching.
+Network score: -2.772588722239781
+
+-----------------
+
+b[0] -> a[1]
+a[0] -> b[1]
+
+b[1] -> a[1]
+
+x -> a[1]
+z -> b[1]
+
+
+id,a[1],a[3],b[4],b[1]
+1,0.0,0.0,1.0,1.0
+2,0.0,0.0,0.0,0.0
+3,null,0.0,1.0,1.0
+```
+
+If specifying **-infFmt distrib**, the following command line should be inserted:
+
+```
+java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt distrib
+```
+
+getting the following output:
+
+```
+Evaluating network with LL score.
+Number of networks with max score: 18
+Finding a maximum branching.
+Network score: -2.772588722239781
+
+-----------------
+
+b[0] -> a[1]
+a[0] -> b[1]
+
+b[1] -> a[1]
+
+x -> a[1]
+z -> b[1]
+
+
+Distributions a[1]:
+id,0.0,1.0
+1,1.000,0.000
+2,1.000,0.000
+3,-1,-1
+
+Distributions a[3]:
+id,0.0,1.0
+1,0.500,0.500
+2,1.000,0.000
+3,0.500,0.500
+
+Distributions b[4]:
+id,0.0,1.0
+1,0.000,1.000
+2,1.000,0.000
+3,0.000,1.000
+```
+
+
+### Example 3 - Getting the most probable trajectory
+
 
 Por exemplo
 
-### Example 3
-
-#### Explicar o que exemplo faz
-
-Por exemplo
-
-
+<!---
 # Program Eficiency
 
 Talvez meter aqui algumas experiencias com datasets grandes e a variar o numero de pais estaticos
@@ -339,3 +428,4 @@ Meter algumas referencias bibliograficas?
 **Bold** and _Italic_ and `Code` text
 
 [Link](url) and ![Image](src)
+-->
