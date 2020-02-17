@@ -424,7 +424,7 @@ The files used for this example are the following:
 
 - [example1_dynamic.csv](example1_dynamic.csv): The file with dynamic attributes for learning
 - [example1_static.csv](example1_static.csv): The file with static attributes for learning
-- - [example2_dynamic_inf.csv](example2_dynamic_inf.csv): The file with the dynamic observations of the subjects where inference is to be made
+- [example2_dynamic_inf.csv](example2_dynamic_inf.csv): The file with the dynamic observations of the subjects where inference is to be made
 - [example2_static_inf.csv](example2_static_inf.csv): The file with the static observations of the subjects where inference is to be made
 
 To get the mentioned trajectories, the user only needs to define the maximum timestep in the argument **-t**. For example, if the user wants to determine the most probable trajectory of all attributes until timestep 5, the following command can be inserted:
