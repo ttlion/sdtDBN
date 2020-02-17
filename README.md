@@ -230,8 +230,8 @@ This example focus only on the learning component of the program, introducing ho
 
 The files used for this example are the following:
 
-- [example1_dynamic](example1_dynamic.csv): The file with dynamic attributes for learning
-- [example1_static](example1_static.csv): The file with static attributes for learning
+- [example1_dynamic.csv](example1_dynamic.csv): The file with dynamic attributes for learning
+- [example1_static.csv](example1_static.csv): The file with static attributes for learning
 
 To learn a sdtDBN with markovLag = 1, a maximum of 1 dynamic parent from the previous timeslice and a maximum of 1 static parent, the following command can be run:
 
@@ -318,11 +318,11 @@ Following the DBN learned in example 1, inference can be made in that DBN. In th
 
 The files used for this example are the following:
 
-- [example1_dynamic](example1_dynamic.csv): The file with dynamic attributes for learning
-- [example1_static](example1_static.csv): The file with static attributes for learning
-- [example2_dynamic_inf](example2_dynamic_inf.csv): The file with the dynamic observations of the subjects where inference is to be made
-- [example2_static_inf](example2_static_inf.csv): The file with the static observations of the subjects where inference is to be made
-- [example2_infVars](example2_infVars.csv): The file with the dynamic attributes and respective timesteps where the user desires to make inference for the given subjects
+- [example1_dynamic.csv](example1_dynamic.csv): The file with dynamic attributes for learning
+- [example1_static.csv](example1_static.csv): The file with static attributes for learning
+- [example2_dynamic_inf.csv](example2_dynamic_inf.csv): The file with the dynamic observations of the subjects where inference is to be made
+- [example2_static_inf.csv](example2_static_inf.csv): The file with the static observations of the subjects where inference is to be made
+- [example2_infVars.csv](example2_infVars.csv): The file with the dynamic attributes and respective timesteps where the user desires to make inference for the given subjects
 
 When making inference, one of two options can be selected with the argument **-infFmt**:
 
@@ -410,16 +410,63 @@ id,0.0,1.0
 If wanting the output of the inference to written to a specific file, the user only needs to give the file to be created in the **-outInf** argument. For example:
 
 ```
-java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt distrib -outInf outputExample.csv
+java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt distrib -outInf outputExample2.csv
 ```
 
-would write the previous inference output to the newly created file outputExample.csv.
+would write the previous inference output to the newly created file [outputExample2.csv](outputExample2.csv).
 
 
 ### Example 3 - Getting the most probable trajectory
 
+Also following the DBN learned in example 1, it is now explained in this example how the user can determine the most probable trajectory of all attributes until a certain timestep, given certain observations of subjects.
 
-Por exemplo
+The files used for this example are the following:
+
+- [example1_dynamic.csv](example1_dynamic.csv): The file with dynamic attributes for learning
+- [example1_static.csv](example1_static.csv): The file with static attributes for learning
+- - [example2_dynamic_inf.csv](example2_dynamic_inf.csv): The file with the dynamic observations of the subjects where inference is to be made
+- [example2_static_inf.csv](example2_static_inf.csv): The file with the static observations of the subjects where inference is to be made
+
+To get the mentioned trajectories, the user only needs to define the maximum timestep in the argument **-t**. For example, if the user wants to determine the most probable trajectory of all attributes until timestep 5, the following command can be inserted:
+
+```
+java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -t 5
+```
+
+Which will output:
+
+```
+Evaluating network with LL score.
+Number of networks with max score: 18
+Finding a maximum branching.
+Network score: -2.772588722239781
+
+-----------------
+
+b[0] -> a[1]
+a[0] -> b[1]
+
+b[1] -> a[1]
+
+x -> a[1]
+z -> b[1]
+
+
+id,a__0,b__0,a__1,b__1,a__2,b__2,a__3,b__3,a__4,b__4,a__5,b__5
+1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,1.0
+2,1.0,1.0,0.0,0.0,1.0,1.0,0.0,0.0,1.0,0.0,1.0,0.0
+3,0.0,,,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0
+```
+
+As can be seen in b\[0\] and a\[1\] of subject 3, the program simply does not provide any estimations where those estimations cannot be given (if the parent nodes are not specified in the observations and cannot be determined by the model).
+
+If wanting the output of the most probable trajectories to be written to a specific file, the user only needs to give the file to be created in the **-tf** argument. For example:
+
+```
+java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -t 5 -tf outputExample3.csv
+```
+
+would write the previous most probable trajectories output to the newly created file [outputExample3.csv](outputExample3.csv).
 
 <!---
 # Program Eficiency
