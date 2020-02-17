@@ -6,7 +6,7 @@ This website contains an overview on the main sdtDBN program functionalities and
 
 ## Previous Work - tDBNs
 
-The tDBN implementation is a Java program that creates a Dynamic Bayesian Network (DBN) from user multivariate longitudinal data, having polynomial time complexity in the number of attributes and observations. The complete implementation and functionalities of tDBN are publicly available [here](http://josemonteiro.github.io/tDBN/), being the Theorical background of tDBN explained in the following article:
+The tDBN implementation is a Java program that creates a Dynamic Bayesian Network (DBN) from user multivariate longitudinal data, having polynomial time complexity in the number of attributes and observations. The complete implementation and functionalities of tDBN are publicly available [here](http://josemonteiro.github.io/tDBN/), being the Theoretical background of tDBN explained in the following article:
 
 
 >José L Monteiro, Susana Vinga, and Alexandra M Carvalho.
@@ -239,7 +239,7 @@ The files used for this example are the following:
 - [example1_dynamic.csv](example1_dynamic.csv): The file with dynamic attributes for learning;
 - [example1_static.csv](example1_static.csv): The file with static attributes for learning.
 
-To learn a sdtDBN with markovLag=1, a maximum of 1 dynamic parent from the previous timeslice and a maximum of 1 static parent per node, the following command can be run:
+To learn a sdtDBN with markovLag=1, a maximum of 1 dynamic parent from the previous time slice and a maximum of 1 static parent per node, the following command can be run:
 
 ```
 java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1
@@ -522,7 +522,7 @@ java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1
 would create the files [outputExample2.csv](outputExample2.csv) and [outputExample3.csv](outputExample3.csv), just as in examples 2 and 3.
 
 
-# Program Eficiency
+# Program Efficiency
 
 ### TODO: Efficiency of static parents and of inference (falar com Prof. Alexandra sobre isto!)
 
