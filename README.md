@@ -195,7 +195,7 @@ id,attA,attC,attD,attW
 21,B,2,4,?
 ```
 
-#### Arguments that use dynamic attributes
+#### Arguments that use static attributes
 
 - **-is**: This argument should be the file with the static observations used to learn the DBN. If not given, program will learn a tDBN, without static features. If given, program will learn a sdtDBN, with static and dynamic features;
 
@@ -203,7 +203,20 @@ id,attA,attC,attD,attW
 
 ### File with variables and respective timesteps to make inference
 
-por aqui ficheiro
+The file with static attributes should follow the following format:
+
+- There must be two values per line, separated by ","
+  - The first value should be the dynamic attribute name
+  - The second value should be the timestep
+
+- All attributes names specified in this file must exist in the dynamic attributes files. The timesteps may not exist in the dynamic attributes files, in that case values will be predicted until the specified timestep, according to the learned network structure.
+
+- An example file where the program would do inference for attX\[2\] and attY\[3\] is presented next.
+
+```
+attX,2
+attY,3
+```
 
 #### Argument with variables and respective timesteps to make inference
 
