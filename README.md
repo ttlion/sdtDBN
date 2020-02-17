@@ -407,6 +407,14 @@ id,0.0,1.0
 3,0.000,1.000
 ```
 
+If wanting the output of the inference to written to a specific file, the user only needs to give the file to be created in the **-outInf** argument. For example:
+
+```
+java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt distrib -outInf outputExample.csv
+```
+
+would write the previous inference output to the newly created file outputExample.csv.
+
 
 ### Example 3 - Getting the most probable trajectory
 
