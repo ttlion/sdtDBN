@@ -1,6 +1,8 @@
-# What are sdtDBNs?
+# Website description 
 
-This website contains an overview on the main sdtDBN functionalities.
+This website contains an overview on the main sdtDBN program functionalities and explains the sdtDBN program usage.
+
+# What are sdtDBNs?
 
 ## Previous Work - tDBNs
 
@@ -522,7 +524,7 @@ would create the files [outputExample2.csv](outputExample2.csv) and [outputExamp
 
 # Program Eficiency
 
-### TODO: Efficiency of static parents and of inference
+### TODO: Efficiency of static parents and of inference (falar com Prof. Alexandra sobre isto!)
 
 <!---
 # References
