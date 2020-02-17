@@ -224,11 +224,50 @@ attY,3
 
 ## Illustrative examples
 
-### Example 1
+### Example 1 - Learning a DBN with dynamic and static attributes
 
-#### Explicar o que exemplo faz
+This example focus only on the learning component of the program, introducing how to learn a DBN also with static attributes. 
 
-Por exemplo
+The files used for this example are the following:
+
+- [example1_dynamic](example1_dynamic.csv): The file with dynamic attributes for learning
+- [example1_static](example1_static.csv): The file with static attributes for learning
+
+To learn a sdtDBN with markovLag = 1, a maximum of 1 dynamic parent from the previous timeslice and a maximum of 1 static parent, the following command can be run:
+
+```
+java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1
+```
+
+The output obtained is:
+
+```
+Evaluating network with LL score.
+Number of networks with max score: 18
+Finding a maximum branching.
+Network score: -2.772588722239781
+
+-----------------
+
+b[0] -> a[1]
+a[0] -> b[1]
+
+b[1] -> a[1]
+
+x -> a[1]
+z -> b[1]
+```
+
+To obtain a graphical representation, the argument "-d" can be used, just as in the tDBN framework, as illustrated next:
+
+```
+java -jar tdbn.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -d | dot -Tpng -o fig_example1.png
+```
+
+would output the following graph:
+
+
+![Image](fig_example1.png)
 
 ### Example 2
 
