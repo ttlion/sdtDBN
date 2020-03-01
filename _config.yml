@@ -1,6 +1,6 @@
 theme: jekyll-theme-architect
 show_downloads: true
 github:
-  repository_url: https://github.com/ttlion/tdbn_code
+  repository_url: https://github.com/ttlion/sdtDBN_code
   zip_url: sdtDBN_v0_0_1.jar
   tar_url: sources_sdtDBN_v0_0_1.zip
