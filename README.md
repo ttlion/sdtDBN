@@ -50,9 +50,9 @@ java -jar sdtDBN_v0_0_1.jar
 Running the aforementioned command will produce the following usage of the program:
 
 ```
-usage: tDBN
+usage: sdtDBN
  -b,--numStaticParents <int>            Maximum number of static parents
-                                        of a certain node (default = 2)
+                                        of a certain node (default = 2).
  -c,--compact                           Outputs network in compact format,
                                         omitting intra-slice edges. Only
                                         works if specified together with
@@ -63,13 +63,17 @@ usage: tDBN
  -i,--inputFile <file>                  Input CSV file to be used for
                                         network learning.
  -inf,--inferenceFile <file>            File with variables to perform
-                                        inference on
+                                        inference on.
  -infFmt,--inferenceFormat <file>       Format to present inference. Can
-                                        be mostProb or distrib, to give
-                                        only the most probable value or
-                                        the full distribution, for each
-                                        attribute specified. Default is
-                                        mostProb.
+                                        be distrSampl, to give only a
+                                        value sampled according to the
+                                        distribution; mostProb, to give
+                                        only the most probable value; or
+                                        distrib, to give the full
+                                        distribution, for each attribute
+                                        specified (where distrSampl is
+                                        applied to intermmediate nodes).
+                                        Default is distrSampl.
  -is,--inputStaticFile <file>           Input CSV file with static
                                         features to be used for network
                                         learning.
@@ -87,11 +91,12 @@ usage: tDBN
                                         supplied, output is written to
                                         terminal.
  -obs,--obsFile <file>                  File with the observations where
-                                        inference should be done
+                                        inference should be done.
  -obsStatic,--obsStaticFile <file>      File with the static observations
-                                        to make inference
- -outInf,--outputInferenceFile <file>   File to write the inference
-                                        performed
+                                        to make inference.
+ -outInf,--outputInferenceFile <file>   Writes inference output to <file>.
+                                        If not supplied, inference output
+                                        is written to terminal.
  -p,--numParents <int>                  Maximum number of parents from
                                         preceding time-slice(s).
  -pm,--parameters                       Learns and outputs the network
@@ -106,7 +111,7 @@ usage: tDBN
                                         eventually producing a structure
                                         with a lower score.
  -t,--trajectory <int>                  Timestep until which trajectory is
-                                        to be determined
+                                        to be determined.
  -tf,--outputTrajectoryFile <file>      Writes predicted trajectories to
                                         <file>. If not supplied, output is
                                         written to terminal.
@@ -118,26 +123,31 @@ Therefore, in this webpage it is described the usage of the following input argu
 
 ```
  -b,--numStaticParents <int>            Maximum number of static parents
-                                        of a certain node (default = 2)
+                                        of a certain node (default = 2).
  -inf,--inferenceFile <file>            File with variables to perform
-                                        inference on
+                                        inference on.
  -infFmt,--inferenceFormat <file>       Format to present inference. Can
-                                        be mostProb or distrib, to give
-                                        only the most probable value or
-                                        the full distribution, for each
-                                        attribute specified. Default is
-                                        mostProb.
+                                        be distrSampl, to give only a
+                                        value sampled according to the
+                                        distribution; mostProb, to give
+                                        only the most probable value; or
+                                        distrib, to give the full
+                                        distribution, for each attribute
+                                        specified (where distrSampl is
+                                        applied to intermmediate nodes).
+                                        Default is distrSampl.
  -is,--inputStaticFile <file>           Input CSV file with static
                                         features to be used for network
                                         learning.
  -obs,--obsFile <file>                  File with the observations where
-                                        inference should be done
+                                        inference should be done.
  -obsStatic,--obsStaticFile <file>      File with the static observations
-                                        to make inference
- -outInf,--outputInferenceFile <file>   File to write the inference
-                                        performed
+                                        to make inference.
+ -outInf,--outputInferenceFile <file>   Writes inference output to <file>.
+                                        If not supplied, inference output
+                                        is written to terminal.
  -t,--trajectory <int>                  Timestep until which trajectory is
-                                        to be determined
+                                        to be determined.
  -tf,--outputTrajectoryFile <file>      Writes predicted trajectories to
                                         <file>. If not supplied, output is
                                         written to terminal.
