@@ -573,6 +573,8 @@ would create the files [outputExample2.csv](outputExample2.csv) and [outputExamp
 
 ### TODO: Efficiency of static parents and of inference (falar com Prof. Alexandra sobre isto!)
 
+Ja esta escrito no documento da tese... vale a pena por aqui um resumo?
+
 <!---
 # References
 
