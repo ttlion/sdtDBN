@@ -339,13 +339,46 @@ The files used for this example are the following:
 - [example2_static_inf.csv](example2_static_inf.csv): The file with the static observations of the subjects where inference is to be made;
 - [example2_infVars.csv](example2_infVars.csv): The file with the dynamic attributes and respective timesteps where the user desires to make inference for the given subjects.
 
-When making inference, one of two options can be selected with the argument **-infFmt**:
+When making inference, one of three options can be selected with the argument **-infFmt**:
+
+- **-infFmt distrSampl**: This mode will present, for each attribute\[timestep\] where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), a randomly sampled value for each subject specified, according to the probability distribution of each attribute\[timestep\] given the observations of each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)).
 
 - **-infFmt mostProb**: This mode will present, for each attribute\[timestep\] where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), the most probable value for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)).
 
-- **-infFmt distrib**: This mode will present, for each attribute\[timestep\] where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), the conditional distribution of the learned network, for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)).
+- **-infFmt distrib**: This mode will present, for each attribute\[timestep\] where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), the conditional distribution of the learned network, for each subject specified. In intermediate nodes, the values are estimated by getting a random sample of the node's value, according to its probability distribution given the observations of each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)).
 
 If there are cases where inference is not possible because the parent nodes values are not given in the observations files and cannot be determined by the model, the program will inform that inference is not possible on those specific cases, producing null (in **-infFmt mostProb**) or -1 (in **-infFmt distrib**).
+
+If specifying **-infFmt distrSampl**, the following command line should be inserted:
+
+```
+java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt distrSampl
+```
+
+getting, for example, the following output (the output may vary, because there is the random component):
+
+```
+Evaluating network with LL score.
+Number of networks with max score: 18
+Finding a maximum branching.
+Network score: -2.772588722239781
+
+-----------------
+
+b[0] -> a[1]
+a[0] -> b[1]
+
+b[1] -> a[1]
+
+x -> a[1]
+z -> b[1]
+
+
+id,a[1],a[3],b[4],b[1]
+1,0.0,0.0,1.0,1.0
+2,0.0,0.0,0.0,0.0
+3,null,0.0,0.0,1.0
+```
 
 If specifying **-infFmt mostProb**, the following command line should be inserted:
 
@@ -384,7 +417,7 @@ If specifying **-infFmt distrib**, the following command line should be inserted
 java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt distrib
 ```
 
-getting the following output:
+getting, for example, the following output (the output may vary, because there is the random component):
 
 ```
 Evaluating network with LL score.
@@ -422,7 +455,7 @@ id,0.0,1.0
 3,0.000,1.000
 ```
 
-If wanting the output of the inference to be written to a specific file, the user only needs to give the file to be created in the **-outInf** argument. For example:
+If wanting the output of the inference to be written to a specific file, the user only needs to provide the file to be created in the **-outInf** argument. For example:
 
 ```
 java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt distrib -outInf outputExample2.csv
@@ -431,9 +464,9 @@ java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1
 would write the previous inference output to the newly created file [outputExample2.csv](outputExample2.csv).
 
 
-### Example 3 - Getting the most probable trajectory
+### Example 3 - Getting an estimated trajectory
 
-Also following the sdtDBN learned in Example 1, it is now explained in this example how the user can determine the most probable trajectory of all attributes until a certain timestep, given certain observations of subjects.
+Also following the sdtDBN learned in Example 1, it is now explained in this example how the user can determine an estimated trajectory of all attributes until a certain timestep, given certain observations of subjects.
 
 The files used for this example are the following:
 
@@ -442,10 +475,14 @@ The files used for this example are the following:
 - [example2_dynamic_inf.csv](example2_dynamic_inf.csv): The file with the dynamic observations of the subjects where inference is to be made;
 - [example2_static_inf.csv](example2_static_inf.csv): The file with the static observations of the subjects where inference is to be made.
 
-To get the mentioned trajectories, the user only needs to define the maximum timestep in the argument **-t**. For example, if the user wants to determine the most probable trajectory of all attributes until timestep 5, the following command can be inserted:
+To get the mentioned trajectories, the user only needs to define the maximum timestep in the argument **-t**. 
+
+The user can also use the argument **-infFmt** to specify how the values of the nodes are determined from the probability distributions. If using **-infFmt mostProb**, the values selected for each node are always the most probable given the observations of each subject. Otherwise, the values are randomly sampled according to the probability distribution of each node given the observations of each subject. 
+
+For example, if the user wants to determine the most probable trajectory of all attributes until timestep 5, the following command can be inserted:
 
 ```
-java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -t 5
+java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -t 5 -infFmt mostProb
 ```
 
 which will output:
@@ -475,15 +512,15 @@ id,a__0,b__0,a__1,b__1,a__2,b__2,a__3,b__3,a__4,b__4,a__5,b__5
 
 As can be seen in b\[0\] and a\[1\] of subject 3, the program simply does not provide any estimations where those estimations cannot be given (if the parent nodes are not specified in the observations and cannot be determined by the model).
 
-If wanting the output of the most probable trajectories to be written to a specific file, the user only needs to give the file to be created in the **-tf** argument. For example:
+If wanting the output of the estimated trajectories to be written to a specific file, the user only needs to give the file to be created in the **-tf** argument. For example:
 
 ```
-java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -t 5 -tf outputExample3.csv
+java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -t 5 -infFmt mostProb -tf outputExample3.csv
 ```
 
-would write the previous most probable trajectories output to the newly created file [outputExample3.csv](outputExample3.csv).
+would write the previous estimated trajectories output to the newly created file [outputExample3.csv](outputExample3.csv).
 
-### Example 4 - Getting the most probable trajectory and also making inference of specific attributes
+### Example 4 - Getting the an estimated trajectory and also making inference of specific attributes
 
 The program allows the user to do examples 2 and 3 at the same time. For example, running:
 
@@ -523,7 +560,7 @@ id,a[1],a[3],b[4],b[1]
 
 which is the output of examples 2 and 3.
 
-The user may also specify two different output files, one for the result of the inference on certain attributes and the other for the output of the most probable trajectories. This is done with the arguments specified in examples 2 and 3, **-outInf** and **-tf**, respectively. For example:
+The user may also specify two different output files, one for the result of the inference on certain attributes and the other for the output of the estimated trajectories. This is done with the arguments specified in examples 2 and 3, **-outInf** and **-tf**, respectively. For example:
 
 ```
 java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb -t 5 -outInf outputExample2.csv -tf outputExample3.csv
