@@ -475,7 +475,7 @@ The files used for this example are the following:
 - [example2_dynamic_inf.csv](example2_dynamic_inf.csv): The file with the dynamic observations of the subjects where inference is to be made;
 - [example2_static_inf.csv](example2_static_inf.csv): The file with the static observations of the subjects where inference is to be made.
 
-To get the mentioned trajectories, the user only needs to define the maximum timestep in the argument **-t**. 
+To get the trajectories, the user only needs to define the maximum timestep in the argument **-t**. 
 
 The user can also use the argument **-infFmt** to specify how the values of the nodes are determined from the probability distributions. If using **-infFmt mostProb**, the values selected for each node are always the most probable given the observations of each subject. Otherwise, the values are randomly sampled according to the probability distribution of each node given the observations of each subject. 
 
