@@ -628,7 +628,7 @@ java -jar sdtDBN_v0_0_1.jar -fromFile obj_saved.txt -obs example2_dynamic_inf.cs
 
 the program will present the same output as in example 4 (plus the parameters of the sdtDBN).
 
-It is important to mention that, when the argument **-fromFile** is given, if there are other arguments regarding the sdtDBN learning, they are ignored. For example, if running
+It is important to mention that, when the argument **-fromFile** is given, if there are other arguments regarding sdtDBN learning, they are ignored. For example, if running
 
 ```
 java -jar sdtDBN_v0_0_1.jar -fromFile someSavedDBN.txt -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1
@@ -636,13 +636,13 @@ java -jar sdtDBN_v0_0_1.jar -fromFile someSavedDBN.txt -i example1_dynamic.csv -
 
 the program will present the sdtDBN stored in the file someSavedDBN.txt, ignoring the remaining arguments.
 
-This generalizes to situations where inference is made. For example, if there is an sdtDBN saved in someSavedDBN.txt which is different from the sdtDBN of example 1, then by running
+This generalizes to situations where inference is made. For example, if there is an sdtDBN saved in someSavedDBN.txt which is different from the sdtDBN of example 1, then, by running
 
 ```
 java -jar sdtDBN_v0_0_1.jar -fromFile someSavedDBN.txt -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb -t 5
 ```
 
-the output would not be the same as in example 4. This is due to the fact that, as the **-fromFile** argument is given, the program reads the sdtDBN stored in the file someSavedDBN.txt, thus ignoring the arguments **-i**, **-is**, **-p**, **-s**, **-m** and **-b**, as these arguments are relative to sdtDBN structure and parameter learning.
+the output would not be the same as the output of example 4. This is due to the fact that, as the **-fromFile** argument is given, the program reads the sdtDBN stored in the file someSavedDBN.txt, thus ignoring the arguments **-i**, **-is**, **-p**, **-s**, **-m** and **-b**, as these arguments are relative to sdtDBN structure and parameter learning.
 
 # Graphical User Interface (GUI) of the sdtDBN program
 
