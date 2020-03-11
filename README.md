@@ -642,7 +642,7 @@ This generalizes to situations where inference is made. For example, if there is
 java -jar sdtDBN_v0_0_1.jar -fromFile someSavedDBN.txt -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb -t 5
 ```
 
-the output would not be the same as the output of example 4. This is due to the fact that, as the **-fromFile** argument is given, the program reads the sdtDBN stored in the file someSavedDBN.txt, thus ignoring the arguments **-i**, **-is**, **-p**, **-s**, **-m** and **-b**, as these arguments are relative to sdtDBN structure and parameter learning.
+the output would not be the same as the output of example 4. Because the **-fromFile** argument is given, the program reads the sdtDBN stored in the file someSavedDBN.txt, thus ignoring the arguments **-i**, **-is**, **-p**, **-s**, **-m** and **-b**, as these arguments are relative to sdtDBN structure and parameter learning.
 
 # Graphical User Interface (GUI) of the sdtDBN program
 
