@@ -546,7 +546,7 @@ java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1
 
 would write the previous estimated trajectories output to the newly created file [outputExample3.csv](outputExample3.csv).
 
-### Example 4 - Getting the an estimated trajectory and also making inference of specific attributes
+### Example 4 - Getting an estimated trajectory and also making inference of specific attributes
 
 The program allows the user to do examples 2 and 3 at the same time. For example, running:
 
@@ -593,6 +593,60 @@ java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1
 ```
 
 would create the files [outputExample2.csv](outputExample2.csv) and [outputExample3.csv](outputExample3.csv), just as in examples 2 and 3.
+
+### Example 5 - Storing and reading an sdtDBN object to/from a file
+
+As explained previously in the webpage, the arguments **-toFile** and **-fromFile** were created so that, respectively, an sdtDBN object can be written in a file and an sdtDBN object can be read from a file. This example explains how to use these two arguments.
+
+Following example 1, where an sdtDBN was learned, the argument **-toFile** can be used to save the learned sdtDBN in a file. Therefore, by running
+
+```
+java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -toFile obj_saved.txt
+```
+
+the program does everything explained in example 1 and saves the learned sdtDBN in a file named obj_saved.txt, which the program creates.
+
+Having this object saved in a file, the argument **-fromFile** can be used to get the saved sdtDBN. For example, by running 
+
+```
+java -jar sdtDBN_v0_0_1.jar -fromFile obj_saved.txt
+```
+
+the program would output the sdtDBN stored in the file obj_saved.txt, which means the output would be the same as the output presented in example 1 (plus the parameters of the learned sdtDBN, as explained next).
+
+The arguments **-toFile** and **-fromFile** can be combined with the several situations presented in previous examples.
+
+Regarding the argument **-toFile**, every time this argument is used, the sdtDBN learned is saved in the according file. When this argument is used, the program always learns the sdtDBN parameters, so that the file where the sdtDBN is saved also has the proper parameters of the learned sdtDBN.
+
+Regarding the argument **-fromFile**, every time this argument is used, the program uses the sdtDBN stored in the according file. This sdtDBN can then be used to perform inference, as explained in the previous examples.
+
+For instance, given the context of example 4 and assuming that the sdtDBN learned from example 1 was previously saved in the file obj_saved.txt, then, by running 
+
+```
+java -jar sdtDBN_v0_0_1.jar -fromFile obj_saved.txt -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb -t 5
+```
+
+the program will present the same output as in example 4 (plus the parameters of the sdtDBN).
+
+It is important to mention that, when the argument **-fromFile** is given, if there are other arguments regarding the sdtDBN learning, they are ignored. For example, if running
+
+```
+java -jar sdtDBN_v0_0_1.jar -fromFile someSavedDBN.txt -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1
+```
+
+the program will present the sdtDBN stored in the file someSavedDBN.txt, ignoring the remaining arguments.
+
+This generalizes to situations where inference is made. For example, if there is an sdtDBN saved in someSavedDBN.txt which is different from the sdtDBN of example 1, then by running
+
+```
+java -jar sdtDBN_v0_0_1.jar -fromFile someSavedDBN.txt -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb -t 5
+```
+
+the output would not be the same as in example 4. This is due to the fact that, as the **-fromFile** argument is given, the program reads the sdtDBN stored in the file someSavedDBN.txt, thus ignoring the arguments **-i**, **-is**, **-p**, **-s**, **-m** and **-b**, as these arguments are relative to sdtDBN structure and parameter learning.
+
+# Graphical User Interface (GUI) of the sdtDBN program
+
+### TODO: When GUI is finished some details will be given here, for now the most recent version of the GUI is provided to download for Windows as an EXE file
 
 
 # Program Efficiency
