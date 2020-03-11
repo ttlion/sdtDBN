@@ -60,6 +60,8 @@ usage: sdtDBN
  -d,--dotFormat                         Outputs network in dot format,
                                         allowing direct redirection into
                                         Graphviz to visualize the graph.
+ -fromFile,--fromObjFile <file>         File with the serialized object of
+                                        the sdtDBN.
  -i,--inputFile <file>                  Input CSV file to be used for
                                         network learning.
  -inf,--inferenceFile <file>            File with variables to perform
@@ -115,6 +117,9 @@ usage: sdtDBN
  -tf,--outputTrajectoryFile <file>      Writes predicted trajectories to
                                         <file>. If not supplied, output is
                                         written to terminal.
+ -toFile,--toObjFile <file>             File in which the serialized
+                                        object with the sdtDBN should be
+                                        stored.
 ```
 
 The arguments of the previous usage concern all the arguments of the original tDBN program plus the new arguments of sdtDBN, for learning DBNs also with static attribute and to make inference in the learned DBN.
@@ -124,6 +129,8 @@ Therefore, in this webpage it is described the usage of the following input argu
 ```
  -b,--numStaticParents <int>            Maximum number of static parents
                                         of a certain node (default = 2).
+ -fromFile,--fromObjFile <file>         File with the serialized object of
+                                        the sdtDBN.
  -inf,--inferenceFile <file>            File with variables to perform
                                         inference on.
  -infFmt,--inferenceFormat <file>       Format to present inference. Can
@@ -151,6 +158,9 @@ Therefore, in this webpage it is described the usage of the following input argu
  -tf,--outputTrajectoryFile <file>      Writes predicted trajectories to
                                         <file>. If not supplied, output is
                                         written to terminal.
+ -toFile,--toObjFile <file>             File in which the serialized
+                                        object with the sdtDBN should be
+                                        stored.
 ```
 
 The usage for the arguments not in this list should be checked at the [tDBN webpage](http://josemonteiro.github.io/tDBN/).
@@ -237,6 +247,16 @@ attY,3
 #### Argument with variables and respective timesteps to make inference
 
 - **-inf**: This argument should be the file with variables and respective timesteps to make inference.
+
+## Files to store an sdtDBN object
+
+When making inference on an sdtDBN, the user may desire to make inference multiple times, while keeping the same sdtDBN. In this situation, there is no need for the program to learn the sdtDBN each time the user makes inference, as the sdtDBN stays the same. Therefore, in order to allow a user to perform inference several times in the same learned sdtDBN, two arguments were created: **-toFile** and **-fromFile**. Each of these arguments consists of a filename.
+
+The argument **-toFile**, when given, will save the sdtDBN object (by serializing it) in a file with the name given in this argument. For example, if specified **-toFile obj_example_out.txt**, the program saves the sdtDBN object in the file **obj_example_out.txt**, for future use.
+
+The argument **-fromFile**, when given, will get the sdtDBN object from the file with the name given in this argument. For example, if specified **-fromFile obj_example_in.txt**, the program reads the sdtDBN object from the file **obj_example_in.txt**, ignoring, if given, all other program arguments related to sdtDBN structure and parameter learning.
+
+To get an example regarding storing and reading an sdtDBN from a file, check **Example 5**. 
 
 ## Illustrative examples
 
