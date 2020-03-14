@@ -6,3 +6,4 @@ github:
   zip_url: sdtDBN_v0_0_1.jar
   tar_url: sources_sdtDBN_v0_0_1.zip
   gui_url_windows: sdtDBN_GUI_windows.zip
+  gui_url_Linux: sdtDBN_GUI_Linux.zip
