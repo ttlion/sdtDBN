@@ -108,8 +108,8 @@ a.button small {
 }
 
 header a.button {
-  display: block;
   float: right;
+  margin:0 0 0 auto;
   background: transparent url(../images/github-button.png) 0 0 no-repeat;
 }
 aside a.button {
