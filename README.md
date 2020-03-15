@@ -39,6 +39,10 @@ Just as tDBN, the sdtDBN implementation uses two external libraries:
 
 # How to use the sdtDBN program?
 
+## Graphical User Interface (GUI) of the sdtDBN program
+
+While this website explains how to use the sdtDBN program using the command line, there is also a GUI available to use the sdtDBN program. Check [https://ttlion.github.io/sdtDBNsGUI/](https://ttlion.github.io/sdtDBNsGUI/), where details on how to use the developed GUI are provided, together with the most recent version of the GUI.
+
 ## Program usage
 
 The usage of the sdtDBN program can be found by running:
@@ -643,11 +647,6 @@ java -jar sdtDBN_v0_0_1.jar -fromFile someSavedDBN.txt -i example1_dynamic.csv -
 ```
 
 the output would not be the same as the output of example 4. Because the **-fromFile** argument is given, the program reads the sdtDBN stored in the file someSavedDBN.txt, thus ignoring the arguments **-i**, **-is**, **-p**, **-s**, **-m** and **-b**, as these arguments are relative to sdtDBN structure and parameter learning.
-
-# Graphical User Interface (GUI) of the sdtDBN program
-
-### TODO: When GUI is finished some details will be given here, for now the most recent version of the GUI is provided to download for Windows as an EXE file
-
 
 # Program Efficiency
 
