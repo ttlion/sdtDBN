@@ -56,15 +56,9 @@
               <small>Download</small>
               source files
             </a>
-            <a href="{{ site.github.gui_url_windows }}" class="button">
-              <small>Download executable</small>
-              GUI: Windows
-            </a>
-            <a href="{{ site.github.gui_url_Linux }}" class="button">
-              <small>Download executable</small>
-              GUI: Linux
-            </a>
           {% endif %}
+
+          <p class="repo-owner"> <font size="+2">Check the </font> <a href="{{ site.github.gui_website }}"><font size="+3">GUI website</font></a>!</p>
 
           {% if site.github.is_project_page %}
             <p class="repo-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</p>
