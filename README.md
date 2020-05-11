@@ -449,7 +449,7 @@ There are three types of relations in the sdtDBN:
 
 For each of the aforementioned types of relations, the user can specify if a certain relation between two nodes must exist or cannot exist. Therefore, there are 6 arguments of the program for the user to define all the desired restrictions (see [here](#arguments-that-allow-the-user-to-make-restrictions-in-the-relations-of-the-sdtDBN)).
 
-The structure of the files used to make restrictions in the network is presented next. [Example 5][ex5] provides an example with restrictions on each one of the previously mentioned types of relations of the sdtDBN.
+The structure of the files used to make restrictions in the network is presented next. [Example 6][ex6] provides an example with restrictions on each one of the previously mentioned types of relations of the sdtDBN.
 
 
 #### Files with restrictions on parents in the same timestep or on static parents
@@ -555,7 +555,7 @@ The argument **-toFile**, when given, will save the sdtDBN object (by serializin
 
 The argument **-fromFile**, when given, will get the sdtDBN object from the file with the name given in this argument. For example, if specified **-fromFile obj_example_in.txt**, the program reads the sdtDBN object from the file **obj_example_in.txt**, ignoring, if given, all other program arguments related to sdtDBN structure and parameter learning.
 
-To get an example regarding storing and reading an sdtDBN from a file, check [Example 6][ex6]. 
+To get an example regarding storing and reading an sdtDBN from a file, check [Example 5][ex5]. 
 
 ## Illustrative examples
 [exMenu]: #illustrative-examples
@@ -566,8 +566,8 @@ The Illustrative example provided next were already mentioned in the explanation
 2. [Example 2][ex2] allows to understand how to make inference on desired attributes;
 3. [Example 3][ex3] presents how to estimate a trajectory of all attributes;
 4. [Example 4][ex4] is the combination of Examples 2 and 3;
-5. [Example 5][ex5] offers a situation where the sdtDBN is learned with restrictions
-6. [Example 6][ex6] shows how to store an sdtDBN in a file and how to retrieve an sdtDBN stored in a file 
+5. [Example 5][ex5] shows how to store an sdtDBN in a file and how to retrieve an sdtDBN stored in a file;
+6. [Example 6][ex6] offers a situation where the sdtDBN is learned with restrictions.  
 
 ### Example 1: Learning a sdtDBN with dynamic and static attributes
 [ex1]: #example-1-learning-a-sdtdbn-with-dynamic-and-static-attributes
@@ -907,14 +907,9 @@ java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1
 
 would create the files [outputExample2.csv](outputExample2.csv) and [outputExample3.csv](outputExample3.csv), just as in examples 2 and 3.
 
-### Example 5: restricoes
-[ex5]: #example-5-restricoes
 
-Still TODO
-
-
-### Example 6: Storing and reading an sdtDBN object to/from a file
-[ex6]: #example-6-storing-and-reading-an-sdtdbn-object-tofrom-a-file
+### Example 5: Storing and reading an sdtDBN object to/from a file
+[ex5]: #example-5-storing-and-reading-an-sdtdbn-object-tofrom-a-file
 
 As explained previously in the webpage, the arguments **-toFile** and **-fromFile** were created so that, respectively, an sdtDBN object can be written in a file and an sdtDBN object can be read from a file. This example explains how to use these two arguments.
 
@@ -963,6 +958,119 @@ java -jar sdtDBN_v0_0_1.jar -fromFile someSavedDBN.txt -i example1_dynamic.csv -
 ```
 
 the output would not be the same as the output of [Example 4][ex4]. Because the **-fromFile** argument is given, the program reads the sdtDBN stored in the file someSavedDBN.txt, thus ignoring the arguments **-i**, **-is**, **-p**, **-s**, **-m** and **-b**, as these arguments are relative to sdtDBN structure and parameter learning.
+
+### Example 6: Learning an sdtDBN with restrictions
+[ex6]: #example-6-learning-an-sdtdbn-with-restrictions
+
+This example demonstrates how to introduce constraints in the network structure when learning an sdtDBN from input data.
+
+The files used for this example are the following:
+
+- [example6_dynamic.csv](example6_dynamic.csv): The file with dynamic attributes for learning;
+- [example6_static.csv](example6_static.csv): The file with static attributes for learning;
+- [example6_mandatory_dynPast.csv](example6_mandatory_dynPast.csv): The file specifying, for any desired node of the sdtDBN, the nodes that must be its parents from previous timesteps;
+- [example6_mandatory_dynSame.csv](example6_mandatory_dynSame.csv): The file specifying, for any desired node of the sdtDBN, the nodes that must be its parents from the same timestep;
+- [example6_mandatory_static_.csv](example6_mandatory_static_.csv): The file specifying, for any desired node of the sdtDBN, the nodes that must be its static parents;
+- [example6_forbidden_dynPast.csv](example6_forbidden_dynPast.csv): The file specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from previous timesteps;
+- [example6_forbidden_dynSame.csv](example6_forbidden_dynSame.csv): The file specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from the same timestep;
+- [example6_forbidden_static_.csv](example6_forbidden_static_.csv): The file specifying, for any desired node of the sdtDBN, the nodes that cannot be its static parents;
+
+Using the observations from [example6_dynamic.csv](example6_dynamic.csv) and [example6_static.csv](example6_static.csv), the following command should be run to learn a non-stationary sdtDBN with Markov lag of 2, a maximum per node of 2 parents from previous timesteps and a maximum per node of 2 static parents:
+
+```
+java -jar sdtDBN_v0_0_1.jar -i example6_dynamic.csv -is example6_static.csv -sp -p 2 -s ll -m 2 -b 2 -ns
+```
+
+The sdtDBN obtained is:
+
+```
+-----------------
+
+a[0] -> a[2]
+a[0] -> b[2]
+a[0] -> c[2]
+
+
+c[2] -> a[2]
+a[2] -> b[2]
+
+y -> c[2]
+z -> c[2]
+
+-----------------
+
+a[1] -> a[3]
+a[1] -> b[3]
+a[1] -> c[3]
+
+
+c[3] -> a[3]
+a[3] -> b[3]
+```
+
+Note that the learned network has more relations than the ones used in the previous examples, which was done to completely show how to introduce multiple restrictions in the network.
+
+The user can specify restrictions to the network by using the proper files. For demonstration, the used files introduce the following restrictions:
+- File [example6_mandatory_dynPast.csv](example6_mandatory_dynPast.csv):
+  - a\[2\] must have a\[1\] and b\[0\] as its parents from the previous timesteps;
+  - c\[2\] must have c\[0\] as its parent from the previous timesteps;
+  - c\[3\] must have b\[2\] as its parent from the previous timesteps;
+- File [example6_mandatory_dynSame.csv](example6_mandatory_dynSame.csv):
+  - b\[2\] must have c\[2\] as its parent from the same timestep;
+  - c\[3\] must have a\[3\] as its parent from the same timestep;
+- File [example6_mandatory_static.csv](example6_mandatory_static.csv):
+  - a\[2\] must have x and y as its static parents;
+  - c\[3\] must have z as its static parent;
+  - b\[3\] must have x as its static parent;
+- File [example6_forbidden_dynPast.csv](example6_forbidden_dynPast.csv):
+  - a\[2\] cannot have neither a\[0\] nor c\[1\] as its parents from the previous timesteps;
+  - c\[3\] cannot have a\[1\] as its parent from the previous timesteps;
+  - b\[3\] cannot have a\[1\] as its parent from the previous timesteps;
+- File [example6_forbidden_dynSame.csv](example6_forbidden_dynSame.csv):
+  - a\[2\] cannot have c\[2\] as its parent from the same timestep;
+  - b\[3\] cannot have a\[3\] as its parent from the same timestep;
+- File [example6_forbidden_static.csv](example6_forbidden_static.csv):
+  - c\[2\] cannot have neither y nor z as its static parents.
+
+To learn an sdtDBN with the same structure as the one shown before, but with the specified restrictions, the user should run the following command:
+
+```
+java -jar sdtDBN_v0_0_1.jar -i example6_dynamic.csv -is example6_static.csv -sp -p 2 -s ll -m 2 -b 2 -ns -mA_dynPast example6_mandatory_dynPast.csv -mA_dynSame example6_mandatory_dynSame.csv -mA_static example6_mandatory_static.csv -mNotA_dynPast example6_forbidden_dynPast.csv -mNotA_dynSame example6_forbidden_dynSame.csv -mNotA_static example6_forbidden_static.csv
+```
+
+The sdtDBN obtained is:
+
+```
+-----------------
+
+b[0] -> a[2]
+a[0] -> b[2]
+c[0] -> c[2]
+
+a[1] -> a[2]
+
+b[2] -> a[2]
+c[2] -> b[2]
+
+x -> a[2]
+y -> a[2]
+
+-----------------
+
+a[1] -> a[3]
+b[1] -> b[3]
+
+b[2] -> c[3]
+
+c[3] -> b[3]
+a[3] -> c[3]
+
+x -> b[3]
+z -> c[3]
+```
+
+It can be noticed that the previous sdtDBN satisfies all restrictions introduced. 
+
 
 <!---
 # Program Efficiency
