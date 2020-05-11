@@ -354,7 +354,7 @@ The sdtDBN program learns DBNs with dynamic and static attributes from observati
 
 It is presented next the format of the files with observations of dynamic and static attributes and the format of the file with the attributes in which inference should be made. 
 
-At the end of the webpage there are provided some **Illustrative examples**. To get an example of how to learn an sdtDBN from input data check [Example 1][ex1]. For an example on how to make inference on certain attributes check **Example 2**. To see how to estimate a trajectory of all attributes, check **Example 3**. To see how to join **Examples 2 and 3**, check **Example 4**.
+At the end of the webpage there are provided some **Illustrative examples**. To get an example of how to learn an sdtDBN from input data check [Example 1][ex1]. For an example on how to make inference on certain attributes check [Example 2][ex2]. To see how to estimate a trajectory of all attributes, check [Example 3][ex3]. To see how to join **Examples 2 and 3**, check [Example 4][ex4].
 
 ### Files with observations of dynamic attributes
 
@@ -449,7 +449,7 @@ There are three types of relations in the sdtDBN:
 
 For each of the aforementioned types of relations, the user can specify if a certain relation between two nodes must exist or cannot exist. Therefore, there are 6 arguments of the program for the user to define all the desired restrictions (see [here](#arguments-that-allow-the-user-to-make-restrictions-in-the-relations-of-the-sdtDBN)).
 
-The structure of the files used to make restrictions in the network is presented next. **Example 5** provides an example with restrictions on each one of the previously mentioned types of relations of the sdtDBN.
+The structure of the files used to make restrictions in the network is presented next. [Example 5][ex5] provides an example with restrictions on each one of the previously mentioned types of relations of the sdtDBN.
 
 
 #### Files with restrictions on parents in the same timestep or on static parents
@@ -555,18 +555,18 @@ The argument **-toFile**, when given, will save the sdtDBN object (by serializin
 
 The argument **-fromFile**, when given, will get the sdtDBN object from the file with the name given in this argument. For example, if specified **-fromFile obj_example_in.txt**, the program reads the sdtDBN object from the file **obj_example_in.txt**, ignoring, if given, all other program arguments related to sdtDBN structure and parameter learning.
 
-To get an example regarding storing and reading an sdtDBN from a file, check **Example 6**. 
+To get an example regarding storing and reading an sdtDBN from a file, check [Example 6][ex6]. 
 
 ## Illustrative examples
 
 The Illustrative example provided next were already mentioned in the explanations of the proper input files. The examples cover the following situations:
 
-1. [Example 1][ex1] shows how to learn an sdtDBN from input data;
+1. [Example 1][ex1] illustrates how to learn an sdtDBN from input data;
 2. [Example 2][ex2] allows to understand how to make inference on desired attributes;
 3. [Example 3][ex3] presents how to estimate a trajectory of all attributes;
 4. [Example 4][ex4] is the combination of Examples 2 and 3;
 5. [Example 5][ex5] offers a situation where the sdtDBN is learned with restrictions
-6. [Example 6][ex6] demonstrates how to store an sdtDBN in a file and how to retrieve an sdtDBN stored in a file 
+6. [Example 6][ex6] shows how to store an sdtDBN in a file and how to retrieve an sdtDBN stored in a file 
 
 ### Example 1: Learning a sdtDBN with dynamic and static attributes
 [ex1]: #example-1-learning-a-sdtdbn-with-dynamic-and-static-attributes
@@ -913,7 +913,7 @@ Still TODO
 
 
 ### Example 6: Storing and reading an sdtDBN object to/from a file
-[ex6]: #example-6-storing-and-reading-an-sdtdbn-object-to/from-a-file
+[ex6]: #example-6-storing-and-reading-an-sdtdbn-object-tofrom-a-file
 
 As explained previously in the webpage, the arguments **-toFile** and **-fromFile** were created so that, respectively, an sdtDBN object can be written in a file and an sdtDBN object can be read from a file. This example explains how to use these two arguments.
 
@@ -939,13 +939,13 @@ Regarding the argument **-toFile**, every time this argument is used, the sdtDBN
 
 Regarding the argument **-fromFile**, every time this argument is used, the program uses the sdtDBN stored in the according file. This sdtDBN can then be used to perform inference, as explained in the previous examples.
 
-For instance, given the context of example 4 and assuming that the sdtDBN learned from [Example 1][ex1] was previously saved in the file obj_saved.txt, then, by running 
+For instance, given the context of [Example 4][ex4] and assuming that the sdtDBN learned from [Example 1][ex1] was previously saved in the file obj_saved.txt, then, by running 
 
 ```
 java -jar sdtDBN_v0_0_1.jar -fromFile obj_saved.txt -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb -t 5
 ```
 
-the program will present the same output as in example 4 (plus the parameters of the sdtDBN).
+the program will present the same output as in [Example 4][ex4] (plus the parameters of the sdtDBN).
 
 It is important to mention that, when the argument **-fromFile** is given, if there are other arguments regarding sdtDBN learning, they are ignored. For example, if running
 
@@ -961,7 +961,7 @@ This generalizes to situations where inference is made. For example, if there is
 java -jar sdtDBN_v0_0_1.jar -fromFile someSavedDBN.txt -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb -t 5
 ```
 
-the output would not be the same as the output of example 4. Because the **-fromFile** argument is given, the program reads the sdtDBN stored in the file someSavedDBN.txt, thus ignoring the arguments **-i**, **-is**, **-p**, **-s**, **-m** and **-b**, as these arguments are relative to sdtDBN structure and parameter learning.
+the output would not be the same as the output of [Example 4][ex4]. Because the **-fromFile** argument is given, the program reads the sdtDBN stored in the file someSavedDBN.txt, thus ignoring the arguments **-i**, **-is**, **-p**, **-s**, **-m** and **-b**, as these arguments are relative to sdtDBN structure and parameter learning.
 
 <!---
 # Program Efficiency
