@@ -458,26 +458,35 @@ Assuming attX and attY as dynamic attributes and attA and attB as static attribu
 
 Regarding restrictions on parents from the same timestep, a file having the lines
 
-'''
+```
 2,attX,attY
 3,attY,attX
-'''
+```
 
-would define one of two options:
-  - If provided as the argument with forbidden parents from the same timestep, it would define that **attY\[2\]->attX\[2\]** and **attX\[3\]->attY\[3\]** could not exist;
-  - If provided as the argument with mandatory parents from the same timestep, it would define that **attY\[2\]->attX\[2\]** and **attX\[3\]->attY\[3\]** had to exist;
+refers to the following relations:
+- **attY\[2\]🠪attX\[2\]**;
+- **attX\[3\]🠪attY\[3\]**.
+
+Then, according to the argument in which the file is inserted, it can define one of two options:
+  - If provided as the argument with forbidden parents from the same timestep, it would define that the relations could not exist;
+  - If provided as the argument with mandatory parents from the same timestep, it would define that the relations had to exist;
 
 
 Regarding restrictions on static parents, a file having the lines
 
-'''
+```
 2,attX,attA,attB
 3,attY,attB
-'''
+```
 
-would define one of two options:
-  - If provided as the argument with forbidden static parents, it would define that **attA->attX\[2\]**, **attB->attX\[2\]** and **attB->attY\[3\]** could not exist;
-  - If provided as the argument with mandatory static parents, it would define that **attA->attX\[2\]**, **attB->attX\[2\]** and **attB->attY\[3\]** had to exist;
+refers to the following relations:
+- **attA🠪attX\[2\]**;
+- **attB🠪attX\[2\]**;
+- **attB🠪attY\[3\]**.
+
+Then, according to the argument in which the file is inserted, it can define one of two options:
+  - If provided as the argument with forbidden static parents, it would define that the relations could not exist;
+  - If provided as the argument with mandatory static parents, it would define that the relations had to exist;
 
 
 #### Files with restrictions on parents from previous timesteps
@@ -501,14 +510,20 @@ The same file can specify either forbidden or mandatory relations, according to 
 
 For example, a file having the lines
 
-'''
+```
 2,attX,attY,-2,attX,-1
 3,attY,attX,-1,attY,-1
-'''
+```
 
-would define one of the two options:
-  - If provided as the argument with forbidden parents from previous timesteps, it would define that **attY\[0\]->attX\[2\]**, **attX\[1\]->attX\[2\]**, **attX\[2\]->attY\[3\]** and **attY\[2\]->attY\[3\]** could not exist;
-  - If provided as the argument with mandatory parents from previous timesteps, it would define that **attY\[0\]->attX\[2\]**, **attX\[1\]->attX\[2\]**, **attX\[2\]->attY\[3\]** and **attY\[2\]->attY\[3\]** had to exist;
+refers to the following relations:
+- **attY\[0\]🠪attX\[2\]**;
+- **attX\[1\]🠪attX\[2\]**;
+- **attX\[2\]🠪attY\[3\]**;
+- **attY\[2\]🠪attY\[3\]**.
+
+Then, according to the argument in which the file is inserted, it can define one of two options:
+  - If provided as the argument with forbidden parents from previous timesteps, it would define that the relations could not exist;
+  - If provided as the argument with mandatory parents from previous timesteps, it would define that the relations had to exist;
 
 
 #### Arguments that allow the user to make restrictions in the relations of the sdtDBN 
