@@ -354,7 +354,7 @@ The sdtDBN program learns DBNs with dynamic and static attributes from observati
 
 It is presented next the format of the files with observations of dynamic and static attributes and the format of the file with the attributes in which inference should be made. 
 
-At the end of the webpage there are provided some **Illustrative examples**. To get an example of how to learn an sdtDBN from input data check [Example 1][ex1]. For an example on how to make inference on certain attributes check [Example 2][ex2]. To see how to estimate a trajectory of all attributes, check [Example 3][ex3]. To see how to join **Examples 2 and 3**, check [Example 4][ex4].
+At the end of the webpage there are provided some [Illustrative examples][[exMenu]. To get an example of how to learn an sdtDBN from input data check [Example 1][ex1]. For an example on how to make inference on certain attributes check [Example 2][ex2]. To see how to estimate a trajectory of all attributes, check [Example 3][ex3]. To see how to join [Examples 2 and 3][exMenu], check [Example 4][ex4].
 
 ### Files with observations of dynamic attributes
 
@@ -558,6 +558,7 @@ The argument **-fromFile**, when given, will get the sdtDBN object from the file
 To get an example regarding storing and reading an sdtDBN from a file, check [Example 6][ex6]. 
 
 ## Illustrative examples
+[exMenu]: #illustrative-examples
 
 The Illustrative example provided next were already mentioned in the explanations of the proper input files. The examples cover the following situations:
 
