@@ -562,14 +562,14 @@ To get an example regarding storing and reading an sdtDBN from a file, check **E
 The Illustrative example provided next were already mentioned in the explanations of the proper input files. The examples cover the following situations:
 
 1. [Example 1][ex1] shows how to learn an sdtDBN from input data;
-2. Example 2 allows to understand how to make inference on desired attributes;
-3. Example 3 presents how to estimate a trajectory of all attributes;
-4. Example 4 is the combination of Examples 2 and 3;
-5. Example 5 offers a situation where the sdtDBN is learned with restrictions
-6. Example 6 demonstrates how to store an sdtDBN in a file and how to retrieve an sdtDBN stored in a file 
+2. [Example 2][ex2] allows to understand how to make inference on desired attributes;
+3. [Example 3][ex3] presents how to estimate a trajectory of all attributes;
+4. [Example 4][ex4] is the combination of Examples 2 and 3;
+5. [Example 5][ex5] offers a situation where the sdtDBN is learned with restrictions
+6. [Example 6][ex6] demonstrates how to store an sdtDBN in a file and how to retrieve an sdtDBN stored in a file 
 
 ### Example 1: Learning a sdtDBN with dynamic and static attributes
-[ex1]: #example-1-learning-a-sdtDBN-with-dynamic-and-static-attributes
+[ex1]: #example-1-learning-a-sdtdbn-with-dynamic-and-static-attributes
 
 This example focus only on the learning component of the program, introducing how to learn a DBN also with static attributes (original tDBN framework only learned networks with dynamic attributes). 
 
@@ -657,6 +657,7 @@ b: [0.0, 1.0]
 ```
 
 ### Example 2: Inference of specific attributes on a learned sdtDBN with dynamic and static attributes
+[ex2]: #example-2-inference-of-specific-attributes-on-a-learned-sdtdbn-with-dynamic-and-static-attributes
 
 Following the sdtDBN learned in [Example 1][ex1], inference can be made in that sdtDBN. In this example, it is explained how to do inference on a specific attribute at a specific timestep.
 
@@ -800,6 +801,7 @@ would write the previous inference output to the newly created file [outputExamp
 
 
 ### Example 3: Getting an estimated trajectory
+[ex3]: #example-3-getting-an-estimated-trajectory
 
 Also following the sdtDBN learned in [Example 1][ex1], it is now explained in this example how the user can determine an estimated trajectory of all attributes until a certain timestep, given certain observations of subjects.
 
@@ -856,6 +858,7 @@ java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1
 would write the previous estimated trajectories output to the newly created file [outputExample3.csv](outputExample3.csv).
 
 ### Example 4: Getting an estimated trajectory and also making inference of specific attributes
+[ex4]: #example-4-getting-an-estimated-trajectory-and-also-making-inference-of-specific-attributes
 
 The program allows the user to do examples 2 and 3 at the same time. For example, running:
 
@@ -904,11 +907,13 @@ java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1
 would create the files [outputExample2.csv](outputExample2.csv) and [outputExample3.csv](outputExample3.csv), just as in examples 2 and 3.
 
 ### Example 5: restricoes
+[ex5]: #example-5-restricoes
 
 Still TODO
 
 
 ### Example 6: Storing and reading an sdtDBN object to/from a file
+[ex6]: #example-6-storing-and-reading-an-sdtdbn-object-to/from-a-file
 
 As explained previously in the webpage, the arguments **-toFile** and **-fromFile** were created so that, respectively, an sdtDBN object can be written in a file and an sdtDBN object can be read from a file. This example explains how to use these two arguments.
 
