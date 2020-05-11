@@ -427,6 +427,99 @@ attY,3
 
 - **-inf**: This argument should be the file with variables and respective timesteps to make inference.
 
+### Files to make restrictions in the relations of the sdtDBN
+
+The user may desire to obtain the sdtDBN that maximizes a certain score when considering only the sdtDBNs structures that include some restrictions in the relations between nodes. 
+
+There are three types of relations in the sdtDBN: 
+1. Relations between dynamic nodes in different timesteps;
+2. Relations between dynamic nodes in the same timestep;
+3. Relations between static and dynamic nodes.
+
+For each of the aforementioned types of relations, the user can specify if a certain relation between two nodes must exist or cannot exist. Therefore, there are 6 arguments of the program for the user to define all the desired restrictions (see [here](#arguments-that-allow-the-user-to-make-restrictions-in-the-relations-of-the-sdtDBN)).
+
+The structure of the files used to make restrictions in the network is presented next. **Example 5** provides an example with restrictions on each one of the previously mentioned types of relations of the sdtDBN.
+
+
+#### Files with restrictions on parents in the same timestep or on static parents
+
+The files with restrictions on parents in the same timestep or on static parents should follow the following format:
+
+- There must be at least three values per line, separated by ",":
+  - The first value should be the timestep of the child node being considered;
+  - The second value should be the name of the attribute of the child node being considered;
+  - Each remaining value (at least one) should be the name of an attribute that either must be or cannot be parent of the node specified by the first two values of the respective line.
+
+- All nodes specified in this file should be valid (the names of the attributes must have been specified in the dynamic or static attributes files and the timesteps must be valid timesteps of the sdtDBN to be learned).
+
+The same file can specify either forbidden or mandatory relations, according to the argument of the program in which the file is introduced. 
+
+Assuming attX and attY as dynamic attributes and attA and attB as static attributes, some examples are given next.
+
+Regarding restrictions on parents from the same timestep, a file having the lines
+
+'''
+2,attX,attY
+3,attY,attX
+'''
+
+would define one of two options:
+  - If provided as the argument with forbidden parents from the same timestep, it would define that **attY\[2\]->attX\[2\]** and **attX\[3\]->attY\[3\]** could not exist;
+  - If provided as the argument with mandatory parents from the same timestep, it would define that **attY\[2\]->attX\[2\]** and **attX\[3\]->attY\[3\]** had to exist;
+
+
+Regarding restrictions on static parents, a file having the lines
+
+'''
+2,attX,attA,attB
+3,attY,attB
+'''
+
+would define one of two options:
+  - If provided as the argument with forbidden static parents, it would define that **attA->attX\[2\]**, **attB->attX\[2\]** and **attB->attY\[3\]** could not exist;
+  - If provided as the argument with mandatory static parents, it would define that **attA->attX\[2\]**, **attB->attX\[2\]** and **attB->attY\[3\]** had to exist;
+
+
+#### Files with restrictions on parents from previous timesteps
+
+The files with restrictions on parents from previous timesteps should follow the following format:
+
+- There must be at least four values per line, separated by ",":
+  - The first value should be the timestep of the child node being considered;
+  - The second value should be the name of the attribute of the child node being considered;
+  - The remaining values should be given in pairs, where:
+    - The first element of each pair should be the name of the attribute that either must be or cannot be parent of the node specified by the first two values of the line.
+    - The second element of each pair should define "how many timesteps is the parent behind the child". Rigorously: the distance between the child node timestep (first value of the line) and the timestep of the parent to which the restriction applies.
+
+- Each line must have an even number of values (the first two define the child node and each parent node from previous timesteps is always defined by a pair of values).
+
+- All nodes specified in this file should be valid (the names of the attributes must have been specified in the dynamic attributes file and the timesteps must be valid timesteps of the sdtDBN to be learned).
+
+- The distance between nodes must be an integer value with absolute value between 1 and the Markov lag (including both 1 and the Markov lag). This distance can be given as a positive or negative number (the program always uses the absolute value).
+
+The same file can specify either forbidden or mandatory relations, according to the argument of the program in which the file is introduced.
+
+For example, a file having the lines
+
+'''
+2,attX,attY,-2,attX,-1
+3,attY,attX,-1,attY,-1
+'''
+
+would define one of the two options:
+  - If provided as the argument with forbidden parents from previous timesteps, it would define that **attY\[0\]->attX\[2\]**, **attX\[1\]->attX\[2\]**, **attX\[2\]->attY\[3\]** and **attY\[2\]->attY\[3\]** could not exist;
+  - If provided as the argument with mandatory parents from previous timesteps, it would define that **attY\[0\]->attX\[2\]**, **attX\[1\]->attX\[2\]**, **attX\[2\]->attY\[3\]** and **attY\[2\]->attY\[3\]** had to exist;
+
+
+#### Arguments that allow the user to make restrictions in the relations of the sdtDBN 
+
+- **-mA_dynPast**: This argument should be the file specifying, for any desired node of the sdtDBN, the nodes that must be its parents from previous timesteps.
+- **-mA_dynSame**: This argument should be the file specifying, for any desired node of the sdtDBN, the node that must be its parent from the same timestep (only one node, because the intra-slice connectivity must be a tree. If, for a certain node, the user specifies more than one parent of the same timestep, the program chooses the connection that maximizes the score of the sdtDBN).
+- **-mA_static**: This argument should be the file specifying, for any desired node of the sdtDBN, the nodes that must be its static parents.
+- **-mNotA_dynPast**: This argument should be the file specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from previous timesteps.
+- **-mNotA_dynSame**: This argument should be the file specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from the same timestep.
+- **-mNotA_static**: This argument should be the file specifying, for any desired node of the sdtDBN, the nodes that cannot be its static parents.
+
 ## Files to store an sdtDBN object
 
 When making inference on an sdtDBN, the user may desire to make inference multiple times, while keeping the same sdtDBN. In this situation, there is no need for the program to learn the sdtDBN each time the user makes inference, as the sdtDBN stays the same. Therefore, in order to allow a user to perform inference several times in the same learned sdtDBN, two arguments were created: **-toFile** and **-fromFile**. Each of these arguments consists of a filename.
@@ -435,7 +528,7 @@ The argument **-toFile**, when given, will save the sdtDBN object (by serializin
 
 The argument **-fromFile**, when given, will get the sdtDBN object from the file with the name given in this argument. For example, if specified **-fromFile obj_example_in.txt**, the program reads the sdtDBN object from the file **obj_example_in.txt**, ignoring, if given, all other program arguments related to sdtDBN structure and parameter learning.
 
-To get an example regarding storing and reading an sdtDBN from a file, check **Example 5**. 
+To get an example regarding storing and reading an sdtDBN from a file, check **Example 6**. 
 
 ## Illustrative examples
 
@@ -773,7 +866,12 @@ java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1
 
 would create the files [outputExample2.csv](outputExample2.csv) and [outputExample3.csv](outputExample3.csv), just as in examples 2 and 3.
 
-### Example 5 - Storing and reading an sdtDBN object to/from a file
+### Example 5 - restricoes
+
+Still TODO
+
+
+### Example 6 - Storing and reading an sdtDBN object to/from a file
 
 As explained previously in the webpage, the arguments **-toFile** and **-fromFile** were created so that, respectively, an sdtDBN object can be written in a file and an sdtDBN object can be read from a file. This example explains how to use these two arguments.
 
@@ -823,13 +921,14 @@ java -jar sdtDBN_v0_0_1.jar -fromFile someSavedDBN.txt -i example1_dynamic.csv -
 
 the output would not be the same as the output of example 4. Because the **-fromFile** argument is given, the program reads the sdtDBN stored in the file someSavedDBN.txt, thus ignoring the arguments **-i**, **-is**, **-p**, **-s**, **-m** and **-b**, as these arguments are relative to sdtDBN structure and parameter learning.
 
+<!---
 # Program Efficiency
 
 ### TODO: Efficiency of static parents and of inference (falar com Prof. Alexandra sobre isto!)
 
 Ja esta escrito no documento da tese... vale a pena por aqui um resumo?
 
-<!---
+
 # References
 
 Meter algumas referencias bibliograficas?
