@@ -442,12 +442,12 @@ attY,3
 
 The user may desire to obtain the sdtDBN that maximizes a certain score when considering only the sdtDBNs structures that include some restrictions in the relations between nodes. 
 
-There are three types of relations in the sdtDBN: 
+There are three types of relations in an sdtDBN: 
 1. Relations between dynamic nodes in different timesteps;
 2. Relations between dynamic nodes in the same timestep;
 3. Relations between static and dynamic nodes.
 
-For each of the aforementioned types of relations, the user can specify if a certain relation between two nodes must exist or cannot exist. Therefore, there are 6 arguments of the program for the user to define all the desired restrictions (see [here](#arguments-that-allow-the-user-to-make-restrictions-in-the-relations-of-the-sdtDBN)).
+For each of the aforementioned types of relations, the user can specify if a certain relation between two nodes must exist or cannot exist. Therefore, there are 6 arguments of the program for the user to define all the desired restrictions (see [here](#arguments-that-allow-the-user-to-make-restrictions-in-the-relations-of-the-sdtdbn)).
 
 The structure of the files used to make restrictions in the network is presented next. [Example 6][ex6] provides an example with restrictions on each one of the previously mentioned types of relations of the sdtDBN.
 
