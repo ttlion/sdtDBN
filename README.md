@@ -970,10 +970,10 @@ The files used for this example are the following:
 - [example6_static.csv](example6_static.csv): The file with static attributes for learning;
 - [example6_mandatory_dynPast.csv](example6_mandatory_dynPast.csv): The file specifying, for any desired node of the sdtDBN, the nodes that must be its parents from previous timesteps;
 - [example6_mandatory_dynSame.csv](example6_mandatory_dynSame.csv): The file specifying, for any desired node of the sdtDBN, the nodes that must be its parents from the same timestep;
-- [example6_mandatory_static_.csv](example6_mandatory_static_.csv): The file specifying, for any desired node of the sdtDBN, the nodes that must be its static parents;
+- [example6_mandatory_static.csv](example6_mandatory_static.csv): The file specifying, for any desired node of the sdtDBN, the nodes that must be its static parents;
 - [example6_forbidden_dynPast.csv](example6_forbidden_dynPast.csv): The file specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from previous timesteps;
 - [example6_forbidden_dynSame.csv](example6_forbidden_dynSame.csv): The file specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from the same timestep;
-- [example6_forbidden_static_.csv](example6_forbidden_static_.csv): The file specifying, for any desired node of the sdtDBN, the nodes that cannot be its static parents;
+- [example6_forbidden_static.csv](example6_forbidden_static.csv): The file specifying, for any desired node of the sdtDBN, the nodes that cannot be its static parents;
 
 Using the observations from [example6_dynamic.csv](example6_dynamic.csv) and [example6_static.csv](example6_static.csv), the following command should be run to learn a non-stationary sdtDBN with Markov lag of 2, a maximum per node of 2 parents from previous timesteps and a maximum per node of 2 static parents:
 
