@@ -55,116 +55,291 @@ Running the aforementioned command will produce the following usage of the progr
 
 ```
 usage: sdtDBN
- -b,--numStaticParents <int>            Maximum number of static parents
-                                        of a certain node (default = 2).
- -c,--compact                           Outputs network in compact format,
-                                        omitting intra-slice edges. Only
-                                        works if specified together with
-                                        -d and with --markovLag 1.
- -d,--dotFormat                         Outputs network in dot format,
-                                        allowing direct redirection into
-                                        Graphviz to visualize the graph.
- -fromFile,--fromObjFile <file>         File with the serialized object of
-                                        the sdtDBN.
- -i,--inputFile <file>                  Input CSV file to be used for
-                                        network learning.
- -inf,--inferenceFile <file>            File with variables to perform
-                                        inference on.
- -infFmt,--inferenceFormat <file>       Format to present inference. Can
-                                        be distrSampl, to give only a
-                                        value sampled according to the
-                                        distribution; mostProb, to give
-                                        only the most probable value; or
-                                        distrib, to give the full
-                                        distribution, for each attribute
-                                        specified (where distrSampl is
-                                        applied to intermmediate nodes).
-                                        Default is distrSampl.
- -is,--inputStaticFile <file>           Input CSV file with static
-                                        features to be used for network
-                                        learning.
- -m,--markovLag <int>                   Maximum Markov lag to be
-                                        considered, which is the longest
-                                        distance between connected
-                                        time-slices. Default is 1,
-                                        allowing edges from one preceding
-                                        slice.
- -ns,--nonStationary                    Learns a non-stationary network
-                                        (one transition network per time
-                                        transition). By default, a
-                                        stationary DBN is learnt.
- -o,--outputFile <file>                 Writes output to <file>. If not
-                                        supplied, output is written to
-                                        terminal.
- -obs,--obsFile <file>                  File with the observations where
-                                        inference should be done.
- -obsStatic,--obsStaticFile <file>      File with the static observations
-                                        to make inference.
- -outInf,--outputInferenceFile <file>   Writes inference output to <file>.
-                                        If not supplied, inference output
-                                        is written to terminal.
- -p,--numParents <int>                  Maximum number of parents from
-                                        preceding time-slice(s).
- -pm,--parameters                       Learns and outputs the network
-                                        parameters.
- -r,--root <int>                        Root node of the intra-slice tree.
-                                        By default, root is arbitrary.
- -s,--scoringFunction <arg>             Scoring function to be used,
-                                        either MDL or LL. MDL is used by
-                                        default.
- -sp,--spanning                         Forces intra-slice connectivity to
-                                        be a tree instead of a forest,
-                                        eventually producing a structure
-                                        with a lower score.
- -t,--trajectory <int>                  Timestep until which trajectory is
-                                        to be determined.
- -tf,--outputTrajectoryFile <file>      Writes predicted trajectories to
-                                        <file>. If not supplied, output is
-                                        written to terminal.
- -toFile,--toObjFile <file>             File in which the serialized
-                                        object with the sdtDBN should be
-                                        stored.
+ -b,--numStaticParents <int>                             Maximum number of
+                                                         static parents of
+                                                         a certain node
+                                                         (default = 2).
+ -c,--compact                                            Outputs network
+                                                         in compact
+                                                         format, omitting
+                                                         intra-slice
+                                                         edges. Only works
+                                                         if specified
+                                                         together with -d
+                                                         and with
+                                                         --markovLag 1.
+ -d,--dotFormat                                          Outputs network
+                                                         in dot format,
+                                                         allowing direct
+                                                         redirection into
+                                                         Graphviz to
+                                                         visualize the
+                                                         graph.
+ -fromFile,--fromObjFile <file>                          File with the
+                                                         serialized object
+                                                         of the sdtDBN.
+ -i,--inputFile <file>                                   Input CSV file to
+                                                         be used for
+                                                         network learning.
+ -inf,--inferenceFile <file>                             File with
+                                                         variables to
+                                                         perform inference
+                                                         on.
+ -infFmt,--inferenceFormat <file>                        Format to present
+                                                         inference. Can be
+                                                         distrSampl, to
+                                                         give only a value
+                                                         sampled according
+                                                         to the
+                                                         distribution;
+                                                         mostProb, to give
+                                                         only the most
+                                                         probable value;
+                                                         or distrib, to
+                                                         give the full
+                                                         distribution, for
+                                                         each attribute
+                                                         specified (where
+                                                         distrSampl is
+                                                         applied to
+                                                         intermmediate
+                                                         nodes). Default
+                                                         is distrSampl.
+ -is,--inputStaticFile <file>                            Input CSV file
+                                                         with static
+                                                         features to be
+                                                         used for network
+                                                         learning.
+ -m,--markovLag <int>                                    Maximum Markov
+                                                         lag to be
+                                                         considered, which
+                                                         is the longest
+                                                         distance between
+                                                         connected
+                                                         time-slices.
+                                                         Default is 1,
+                                                         allowing edges
+                                                         from one
+                                                         preceding slice.
+ -mA_dynPast,--mustAppear_dynPast <file>                 File that, for
+                                                         each node Xi[t],
+                                                         contains the
+                                                         dynamic nodes
+                                                         from t'<t that
+                                                         must be parents
+                                                         of each Xi[t].
+ -mA_dynSame,--mustAppear_dynSameTimestep <file>         File that, for
+                                                         each node Xi[t],
+                                                         contains the
+                                                         dynamic nodes
+                                                         from t that must
+                                                         be parents of
+                                                         each Xi[t].
+ -mA_static,--mustAppear_static <file>                   File that, for
+                                                         each node Xi[t],
+                                                         contains the
+                                                         static nodes that
+                                                         must be parents
+                                                         of each Xi[t].
+ -mNotA_dynPast,--mustNotAppear_dynPast <file>           File that, for
+                                                         each node Xi[t],
+                                                         contains the
+                                                         dynamic nodes
+                                                         from t'<t that
+                                                         cannot be parents
+                                                         of each Xi[t].
+ -mNotA_dynSame,--mustNotAppear_dynSameTimestep <file>   File that, for
+                                                         each node Xi[t],
+                                                         contains the
+                                                         dynamic nodes
+                                                         from t that
+                                                         cannot be parents
+                                                         of each Xi[t].
+ -mNotA_static,--mustNotAppear_static <file>             File that, for
+                                                         each node Xi[t],
+                                                         contains the
+                                                         static nodes that
+                                                         cannot be parents
+                                                         of each Xi[t].
+ -ns,--nonStationary                                     Learns a
+                                                         non-stationary
+                                                         network (one
+                                                         transition
+                                                         network per time
+                                                         transition). By
+                                                         default, a
+                                                         stationary DBN is
+                                                         learnt.
+ -o,--outputFile <file>                                  Writes output to
+                                                         <file>. If not
+                                                         supplied, output
+                                                         is written to
+                                                         terminal.
+ -obs,--obsFile <file>                                   File with the
+                                                         observations
+                                                         where inference
+                                                         should be done.
+ -obsStatic,--obsStaticFile <file>                       File with the
+                                                         static
+                                                         observations to
+                                                         make inference.
+ -outInf,--outputInferenceFile <file>                    Writes inference
+                                                         output to <file>.
+                                                         If not supplied,
+                                                         inference output
+                                                         is written to
+                                                         terminal.
+ -p,--numParents <int>                                   Maximum number of
+                                                         parents from
+                                                         preceding
+                                                         time-slice(s).
+ -pm,--parameters                                        Learns and
+                                                         outputs the
+                                                         network
+                                                         parameters.
+ -r,--root <int>                                         Root node of the
+                                                         intra-slice tree.
+                                                         By default, root
+                                                         is arbitrary.
+ -s,--scoringFunction <arg>                              Scoring function
+                                                         to be used,
+                                                         either MDL or LL.
+                                                         MDL is used by
+                                                         default.
+ -sp,--spanning                                          Forces
+                                                         intra-slice
+                                                         connectivity to
+                                                         be a tree instead
+                                                         of a forest,
+                                                         eventually
+                                                         producing a
+                                                         structure with a
+                                                         lower score.
+ -t,--trajectory <int>                                   Timestep until
+                                                         which trajectory
+                                                         is to be
+                                                         determined.
+ -tf,--outputTrajectoryFile <file>                       Writes predicted
+                                                         trajectories to
+                                                         <file>. If not
+                                                         supplied, output
+                                                         is written to
+                                                         terminal.
+ -toFile,--toObjFile <file>                              File in which the
+                                                         serialized object
+                                                         with the sdtDBN
+                                                         should be stored.
 ```
 
-The arguments of the previous usage concern all the arguments of the original tDBN program plus the new arguments of sdtDBN, for learning DBNs also with static attribute and to make inference in the learned DBN.
+The arguments of the previous usage concern all the arguments of the original tDBN program plus the new arguments of the sdtDBN program, for learning DBNs also with static attributes and to make inference in the learned DBNs.
 
 Therefore, in this webpage it is described the usage of the following input arguments:
 
 ```
- -b,--numStaticParents <int>            Maximum number of static parents
-                                        of a certain node (default = 2).
- -fromFile,--fromObjFile <file>         File with the serialized object of
-                                        the sdtDBN.
- -inf,--inferenceFile <file>            File with variables to perform
-                                        inference on.
- -infFmt,--inferenceFormat <file>       Format to present inference. Can
-                                        be distrSampl, to give only a
-                                        value sampled according to the
-                                        distribution; mostProb, to give
-                                        only the most probable value; or
-                                        distrib, to give the full
-                                        distribution, for each attribute
-                                        specified (where distrSampl is
-                                        applied to intermmediate nodes).
-                                        Default is distrSampl.
- -is,--inputStaticFile <file>           Input CSV file with static
-                                        features to be used for network
-                                        learning.
- -obs,--obsFile <file>                  File with the observations where
-                                        inference should be done.
- -obsStatic,--obsStaticFile <file>      File with the static observations
-                                        to make inference.
- -outInf,--outputInferenceFile <file>   Writes inference output to <file>.
-                                        If not supplied, inference output
-                                        is written to terminal.
- -t,--trajectory <int>                  Timestep until which trajectory is
-                                        to be determined.
- -tf,--outputTrajectoryFile <file>      Writes predicted trajectories to
-                                        <file>. If not supplied, output is
-                                        written to terminal.
- -toFile,--toObjFile <file>             File in which the serialized
-                                        object with the sdtDBN should be
-                                        stored.
+ -b,--numStaticParents <int>                             Maximum number of
+                                                         static parents of
+                                                         a certain node
+                                                         (default = 2).
+ -fromFile,--fromObjFile <file>                          File with the
+                                                         serialized object
+                                                         of the sdtDBN.
+ -inf,--inferenceFile <file>                             File with
+                                                         variables to
+                                                         perform inference
+                                                         on.
+ -infFmt,--inferenceFormat <file>                        Format to present
+                                                         inference. Can be
+                                                         distrSampl, to
+                                                         give only a value
+                                                         sampled according
+                                                         to the
+                                                         distribution;
+                                                         mostProb, to give
+                                                         only the most
+                                                         probable value;
+                                                         or distrib, to
+                                                         give the full
+                                                         distribution, for
+                                                         each attribute
+                                                         specified (where
+                                                         distrSampl is
+                                                         applied to
+                                                         intermmediate
+                                                         nodes). Default
+                                                         is distrSampl.
+ -is,--inputStaticFile <file>                            Input CSV file
+                                                         with static
+                                                         features to be
+                                                         used for network
+                                                         learning.
+ -mA_dynPast,--mustAppear_dynPast <file>                 File that, for
+                                                         each node Xi[t],
+                                                         contains the
+                                                         dynamic nodes
+                                                         from t'<t that
+                                                         must be parents
+                                                         of each Xi[t].
+ -mA_dynSame,--mustAppear_dynSameTimestep <file>         File that, for
+                                                         each node Xi[t],
+                                                         contains the
+                                                         dynamic nodes
+                                                         from t that must
+                                                         be parents of
+                                                         each Xi[t].
+ -mA_static,--mustAppear_static <file>                   File that, for
+                                                         each node Xi[t],
+                                                         contains the
+                                                         static nodes that
+                                                         must be parents
+                                                         of each Xi[t].
+ -mNotA_dynPast,--mustNotAppear_dynPast <file>           File that, for
+                                                         each node Xi[t],
+                                                         contains the
+                                                         dynamic nodes
+                                                         from t'<t that
+                                                         cannot be parents
+                                                         of each Xi[t].
+ -mNotA_dynSame,--mustNotAppear_dynSameTimestep <file>   File that, for
+                                                         each node Xi[t],
+                                                         contains the
+                                                         dynamic nodes
+                                                         from t that
+                                                         cannot be parents
+                                                         of each Xi[t].
+ -mNotA_static,--mustNotAppear_static <file>             File that, for
+                                                         each node Xi[t],
+                                                         contains the
+                                                         static nodes that
+                                                         cannot be parents
+                                                         of each Xi[t].
+ -obs,--obsFile <file>                                   File with the
+                                                         observations
+                                                         where inference
+                                                         should be done.
+ -obsStatic,--obsStaticFile <file>                       File with the
+                                                         static
+                                                         observations to
+                                                         make inference.
+ -outInf,--outputInferenceFile <file>                    Writes inference
+                                                         output to <file>.
+                                                         If not supplied,
+                                                         inference output
+                                                         is written to
+                                                         terminal.
+ -t,--trajectory <int>                                   Timestep until
+                                                         which trajectory
+                                                         is to be
+                                                         determined.
+ -tf,--outputTrajectoryFile <file>                       Writes predicted
+                                                         trajectories to
+                                                         <file>. If not
+                                                         supplied, output
+                                                         is written to
+                                                         terminal.
+ -toFile,--toObjFile <file>                              File in which the
+                                                         serialized object
+                                                         with the sdtDBN
+                                                         should be stored.
 ```
 
 The usage for the arguments not in this list should be checked at the [tDBN webpage](http://josemonteiro.github.io/tDBN/).
