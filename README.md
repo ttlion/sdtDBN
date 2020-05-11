@@ -344,11 +344,19 @@ Therefore, in this webpage it is described the usage of the following input argu
 
 The usage for the arguments not in this list should be checked at the [tDBN webpage](http://josemonteiro.github.io/tDBN/).
 
-## Input files formats
+## Input files extension
 
-All input files must be given in comma-separated values (CSV) format.
+All input files must be given as CSV files (comma-separated values).
 
-### Files with dynamic attributes
+## Input files to learn an sdtDBN from data and make inference in it
+
+The sdtDBN program learns DBNs with dynamic and static attributes from observations of the several attributes, finding relations between the proper attributes. Then, with an sdtDBN learned, inference can be made, to estimate the values of the attributes in certain timesteps.
+
+It is presented next the format of the files with observations of dynamic and static attributes and the format of the file with the attributes in which inference should be made. 
+
+At the end of the webpage there are provided some **Illustrative examples**. To get an example of how to learn an sdtDBN from input data check [Example 1][ex1]. For an example on how to make inference on certain attributes check **Example 2**. To see how to estimate a trajectory of all attributes, check **Example 3**. To see how to join **Examples 2 and 3**, check **Example 4**.
+
+### Files with observations of dynamic attributes
 
 All files with dynamic attributes should follow the following format:
 
@@ -371,14 +379,14 @@ id,attX__0,attY__0,attX__1,attY__1,attX__2,attY__2
 21,4,2,3,,2,-8
 ```
 
-#### Arguments that use dynamic attributes
+#### Arguments that use files with observations of dynamic attributes
 
 - **-i**: This argument should be the file with the dynamic observations used to learn the DBN;
 
 - **-obs**: This argument should be the file with dynamic observations of the subjects in which inference is going to be made.
 
 
-### Files with static attributes
+### Files with observations of static attributes
 
 All files with static attributes should follow the following format:
 
@@ -400,11 +408,12 @@ id,attA,attC,attD,attW
 21,B,2,4,?
 ```
 
-#### Arguments that use static attributes
+#### Arguments that use files with observations of static attributes
 
 - **-is**: This argument should be the file with the static observations used to learn the DBN. If not given, the program will learn a tDBN, without static features. If given, program will learn a sdtDBN, with static and dynamic features;
 
 - **-obsStatic**: This argument should be the file with static observations of the subjects in which inference is going to be made.
+
 
 ### File with variables and respective timesteps to make inference
 
@@ -427,7 +436,9 @@ attY,3
 
 - **-inf**: This argument should be the file with variables and respective timesteps to make inference.
 
-### Files to make restrictions in the relations of the sdtDBN
+
+
+## Input files to make restrictions in the relations of the sdtDBN
 
 The user may desire to obtain the sdtDBN that maximizes a certain score when considering only the sdtDBNs structures that include some restrictions in the relations between nodes. 
 
@@ -535,7 +546,8 @@ Then, according to the argument in which the file is inserted, it can define one
 - **-mNotA_dynSame**: This argument should be the file specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from the same timestep.
 - **-mNotA_static**: This argument should be the file specifying, for any desired node of the sdtDBN, the nodes that cannot be its static parents.
 
-## Files to store an sdtDBN object
+
+## Files to store and retrieve an sdtDBN object
 
 When making inference on an sdtDBN, the user may desire to make inference multiple times, while keeping the same sdtDBN. In this situation, there is no need for the program to learn the sdtDBN each time the user makes inference, as the sdtDBN stays the same. Therefore, in order to allow a user to perform inference several times in the same learned sdtDBN, two arguments were created: **-toFile** and **-fromFile**. Each of these arguments consists of a filename.
 
@@ -547,7 +559,17 @@ To get an example regarding storing and reading an sdtDBN from a file, check **E
 
 ## Illustrative examples
 
+The Illustrative example provided next were already mentioned in the explanations of the proper input files. The examples cover the following situations:
+
+1. [Example 1][ex1] shows how to learn an sdtDBN from input data;
+2. Example 2 allows to understand how to make inference on desired attributes;
+3. Example 3 presents how to estimate a trajectory of all attributes;
+4. Example 4 is the combination of Examples 2 and 3;
+5. Example 5 offers a situation where the sdtDBN is learned with restrictions
+6. Example 6 demonstrates how to store an sdtDBN in a file and how to retrieve an sdtDBN stored in a file 
+
 ### Example 1 - Learning a sdtDBN with dynamic and static attributes
+[ex1]: #example-1---learning-a-sdtDBN-with-dynamic-and-static-attributes
 
 This example focus only on the learning component of the program, introducing how to learn a DBN also with static attributes (original tDBN framework only learned networks with dynamic attributes). 
 
@@ -636,7 +658,7 @@ b: [0.0, 1.0]
 
 ### Example 2 - Inference of specific attributes on a learned sdtDBN with dynamic and static attributes
 
-Following the sdtDBN learned in example 1, inference can be made in that sdtDBN. In this example, it is explained how to do inference on a specific attribute at a specific timestep.
+Following the sdtDBN learned in [Example 1][ex1], inference can be made in that sdtDBN. In this example, it is explained how to do inference on a specific attribute at a specific timestep.
 
 The files used for this example are the following:
 
@@ -779,7 +801,7 @@ would write the previous inference output to the newly created file [outputExamp
 
 ### Example 3 - Getting an estimated trajectory
 
-Also following the sdtDBN learned in Example 1, it is now explained in this example how the user can determine an estimated trajectory of all attributes until a certain timestep, given certain observations of subjects.
+Also following the sdtDBN learned in [Example 1][ex1], it is now explained in this example how the user can determine an estimated trajectory of all attributes until a certain timestep, given certain observations of subjects.
 
 The files used for this example are the following:
 
@@ -890,13 +912,13 @@ Still TODO
 
 As explained previously in the webpage, the arguments **-toFile** and **-fromFile** were created so that, respectively, an sdtDBN object can be written in a file and an sdtDBN object can be read from a file. This example explains how to use these two arguments.
 
-Following example 1, where an sdtDBN was learned, the argument **-toFile** can be used to save the learned sdtDBN in a file. Therefore, by running
+Following [Example 1][ex1], where an sdtDBN was learned, the argument **-toFile** can be used to save the learned sdtDBN in a file. Therefore, by running
 
 ```
 java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -toFile obj_saved.txt
 ```
 
-the program does everything explained in example 1 and saves the learned sdtDBN in a file named obj_saved.txt, which the program creates.
+the program does everything explained in [Example 1][ex1] and saves the learned sdtDBN in a file named obj_saved.txt, which the program creates.
 
 Having this object saved in a file, the argument **-fromFile** can be used to get the saved sdtDBN. For example, by running 
 
@@ -904,7 +926,7 @@ Having this object saved in a file, the argument **-fromFile** can be used to ge
 java -jar sdtDBN_v0_0_1.jar -fromFile obj_saved.txt
 ```
 
-the program would output the sdtDBN stored in the file obj_saved.txt, which means the output would be the same as the output presented in example 1 (plus the parameters of the learned sdtDBN, as explained next).
+the program would output the sdtDBN stored in the file obj_saved.txt, which means the output would be the same as the output presented in [Example 1][ex1] (plus the parameters of the learned sdtDBN, as explained next).
 
 The arguments **-toFile** and **-fromFile** can be combined with the several situations presented in previous examples.
 
@@ -912,7 +934,7 @@ Regarding the argument **-toFile**, every time this argument is used, the sdtDBN
 
 Regarding the argument **-fromFile**, every time this argument is used, the program uses the sdtDBN stored in the according file. This sdtDBN can then be used to perform inference, as explained in the previous examples.
 
-For instance, given the context of example 4 and assuming that the sdtDBN learned from example 1 was previously saved in the file obj_saved.txt, then, by running 
+For instance, given the context of example 4 and assuming that the sdtDBN learned from [Example 1][ex1] was previously saved in the file obj_saved.txt, then, by running 
 
 ```
 java -jar sdtDBN_v0_0_1.jar -fromFile obj_saved.txt -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb -t 5
@@ -928,7 +950,7 @@ java -jar sdtDBN_v0_0_1.jar -fromFile someSavedDBN.txt -i example1_dynamic.csv -
 
 the program will present the sdtDBN stored in the file someSavedDBN.txt, ignoring the remaining arguments.
 
-This generalizes to situations where inference is made. For example, if there is an sdtDBN saved in someSavedDBN.txt which is different from the sdtDBN of example 1, then, by running
+This generalizes to situations where inference is made. For example, if there is an sdtDBN saved in someSavedDBN.txt which is different from the sdtDBN of [Example 1][ex1], then, by running
 
 ```
 java -jar sdtDBN_v0_0_1.jar -fromFile someSavedDBN.txt -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb -t 5
