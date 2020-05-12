@@ -364,7 +364,7 @@ At the end of the webpage, there are provided some [Illustrative examples][exMen
 
 All files with observations of dynamic attributes should follow the following format:
 
-- The first line should be the header, where the first value must be some identification tag and the remaining values should be each attribute's name together with the proper timestep, using the notation "attName__timestep".
+- The first line should be the header, where the first value must be some identification tag and the remaining values should be each attribute's name together with the proper timestep, using the notation "attName__timestep";
 
   - The order of the attributes and timesteps must obey the following rules:
     - Each timestep must have all its attributes in consecutive positions;
@@ -372,7 +372,7 @@ All files with observations of dynamic attributes should follow the following fo
   - Example for two attributes and two timesteps: 
     - **id,attNameX__0,attNameY__0,attNameX__1,attNameY__1**
 
-- In each of the remaining lines, the first position must be the subject identifier and the remaining positions must be the values of the attributes in the respective timesteps, in the order defined in the header line.
+- In each of the remaining lines, the first position must be the subject identifier and the remaining positions must be the values of the attributes in the respective timesteps, in the order defined in the header line;
 
 - Missing values should be marked either by not writing anything or by putting "?".
 
@@ -395,9 +395,9 @@ id,attX__0,attY__0,attX__1,attY__1,attX__2,attY__2
 
 All files with observations of static attributes should follow the following format:
 
-- The first line should be the header, where the first value must be some identification tag and the remaining values must be each attribute's name.
+- The first line should be the header, where the first value must be some identification tag and the remaining values must be each attribute's name;
   
-- In each of the remaining lines, the first position must be the subject's identifier and the remaining positions must be the values of the static attributes, in the order defined in the header line.
+- In each of the remaining lines, the first position must be the subject's identifier and the remaining positions must be the values of the static attributes, in the order defined in the header line;
   - The user must guarantee that every subject in the static file exists, with the same id, in the respective dynamic file:
       - Subjects in **-is** file should exist in **-i** file;
       - Subjects in **-obsStatic** file should exist in **-obs** file;
@@ -513,12 +513,12 @@ The files with restrictions on parents from previous timesteps should follow the
   - The first value should be the timestep of the child node being considered;
   - The second value should be the name of the attribute of the child node being considered;
   - The remaining values should be given as pairs, where:
-    - The first element of each pair should be the name of the attribute that either must be or cannot be parent of the node specified by the first two values of the line.
+    - The first element of each pair should be the name of the attribute that either must be or cannot be parent of the node specified by the first two values of the line;
     - The second element of each pair should define "how many timesteps is the parent behind the child". Rigorously: the distance between the child node's timestep (first value of the line) and the timestep of the parent to which the restriction applies.
 
-- Each line must have an even number of values (the first two define the child node and each parent node from previous timesteps is defined by a pair of values).
+- Each line must have an even number of values (the first two define the child node and each parent node from previous timesteps is defined by a pair of values);
 
-- All nodes specified in this file should be valid (the names of the attributes must have been specified in the dynamic attributes' file and the timesteps must be valid timesteps of the sdtDBN to be learned).
+- All nodes specified in this file should be valid (the names of the attributes must have been specified in the dynamic attributes' file and the timesteps must be valid timesteps of the sdtDBN to be learned);
 
 - The distance between nodes must be an integer value with absolute value between 1 and the Markov lag (including both 1 and the Markov lag). This distance can be given as a positive or negative number (the program always uses the absolute value).
 
@@ -539,16 +539,16 @@ refers to the following relations:
 
 According to the argument in which the file is inserted, it can define one of two options:
   - If provided as the argument with forbidden parents from previous timesteps, it would define that the relations could not exist;
-  - If provided as the argument with mandatory parents from previous timesteps, it would define that the relations had to exist;
+  - If provided as the argument with mandatory parents from previous timesteps, it would define that the relations had to exist.
 
 
 #### Arguments that allow the user to make restrictions in the relations of the sdtDBN 
 
-- **-mA_dynPast**: File specifying, for any desired node of the sdtDBN, the nodes that must be its parents from previous timesteps.
-- **-mA_dynSame**: File specifying, for any desired node of the sdtDBN, the node that must be its parent from the same timestep (only one node, because the intra-slice connectivity must be a tree. If, for a certain node, the user specifies more than one mandatory parent of the same timestep, the program chooses the connection that maximizes the global score of the sdtDBN).
-- **-mA_static**: File specifying, for any desired node of the sdtDBN, the nodes that must be its static parents.
-- **-mNotA_dynPast**: File specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from previous timesteps.
-- **-mNotA_dynSame**: File specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from the same timestep.
+- **-mA_dynPast**: File specifying, for any desired node of the sdtDBN, the nodes that must be its parents from previous timesteps;
+- **-mA_dynSame**: File specifying, for any desired node of the sdtDBN, the node that must be its parent from the same timestep (only one node, because the intra-slice connectivity must be a tree. If, for a certain node, the user specifies more than one mandatory parent of the same timestep, the program chooses the connection that maximizes the global score of the sdtDBN);
+- **-mA_static**: File specifying, for any desired node of the sdtDBN, the nodes that must be its static parents;
+- **-mNotA_dynPast**: File specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from previous timesteps;
+- **-mNotA_dynSame**: File specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from the same timestep;
 - **-mNotA_static**: File specifying, for any desired node of the sdtDBN, the nodes that cannot be its static parents.
 
 
@@ -681,10 +681,10 @@ The files used for this example are the following:
 
 When making inference, one of three inference modes can be selected with the argument **-infFmt**:
 
-- **-infFmt distrSampl**: This mode will present, for each **attribute\[timestep\]** where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), a randomly sampled value for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)). 
+- **-infFmt distrSampl**: This mode will present, for each **attribute\[timestep\]** where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), a randomly sampled value for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv));
   - Each value is randomly sampled according to the probability distribution of each **attribute\[timestep\]**, given the observations of the proper subject.
 
-- **-infFmt mostProb**: This mode will present, for each **attribute\[timestep\]** where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), the most probable value for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)).
+- **-infFmt mostProb**: This mode will present, for each **attribute\[timestep\]** where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), the most probable value for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv));
 
 - **-infFmt distrib**: This mode will present, for each **attribute\[timestep\]** where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), the conditional distribution of the learned network, for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)). 
   - In intermediate nodes, the values are estimated by getting a random sample of the node's value, according to its probability distribution, given the observations of the proper subject.
@@ -987,7 +987,7 @@ The files used for this example are the following:
 - [example6_mandatory_static.csv](example6_mandatory_static.csv): File specifying, for any desired node of the sdtDBN, the nodes that must be its static parents;
 - [example6_forbidden_dynPast.csv](example6_forbidden_dynPast.csv): File specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from previous timesteps;
 - [example6_forbidden_dynSame.csv](example6_forbidden_dynSame.csv): File specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from the same timestep;
-- [example6_forbidden_static.csv](example6_forbidden_static.csv): File specifying, for any desired node of the sdtDBN, the nodes that cannot be its static parents;
+- [example6_forbidden_static.csv](example6_forbidden_static.csv): File specifying, for any desired node of the sdtDBN, the nodes that cannot be its static parents.
 
 Using the observations from [example6_dynamic.csv](example6_dynamic.csv) and [example6_static.csv](example6_static.csv), the following command can be run to learn a non-stationary sdtDBN with Markov lag of 2, a maximum per node of 2 parents from previous timesteps and a maximum per node of 2 static parents:
 
@@ -1028,21 +1028,21 @@ The user can specify restrictions to the network by using the proper files. For 
 - File [example6_mandatory_dynPast.csv](example6_mandatory_dynPast.csv):
   - **a\[2\]** must have **a\[1\]** and **b\[0\]** as parents from previous timesteps;
   - **c\[2\]** must have **c\[0\]** as parent from previous timesteps;
-  - **c\[3\]** must have **b\[2\]** as parent from previous timesteps;
+  - **c\[3\]** must have **b\[2\]** as parent from previous timesteps.
 - File [example6_mandatory_dynSame.csv](example6_mandatory_dynSame.csv):
   - **b\[2\]** must have **c\[2\]** as parent from the same timestep;
-  - **c\[3\]** must have **a\[3\]** as parent from the same timestep;
+  - **c\[3\]** must have **a\[3\]** as parent from the same timestep.
 - File [example6_mandatory_static.csv](example6_mandatory_static.csv):
   - **a\[2\]** must have **x** and **y** as static parents;
   - **c\[3\]** must have **z** as static parent;
-  - **b\[3\]** must have **x** as static parent;
+  - **b\[3\]** must have **x** as static parent.
 - File [example6_forbidden_dynPast.csv](example6_forbidden_dynPast.csv):
   - **a\[2\]** cannot have neither **a\[0\]** nor **c\[1\]** as parents from previous timesteps;
   - **c\[3\]** cannot have **a\[1\]** as parent from previous timesteps;
-  - **b\[3\]** cannot have **a\[1\]** as parent from previous timesteps;
+  - **b\[3\]** cannot have **a\[1\]** as parent from previous timesteps.
 - File [example6_forbidden_dynSame.csv](example6_forbidden_dynSame.csv):
   - **a\[2\]** cannot have **c\[2\]** as parent from the same timestep;
-  - **b\[3\]** cannot have **a\[3\]** as parent from the same timestep;
+  - **b\[3\]** cannot have **a\[3\]** as parent from the same timestep.
 - File [example6_forbidden_static.csv](example6_forbidden_static.csv):
   - **c\[2\]** cannot have neither **y** nor **z** as static parents.
 
