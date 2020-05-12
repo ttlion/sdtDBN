@@ -1,12 +1,12 @@
 # Website description 
 
-This website contains an overview on the main functionalities of the sdtDBN program and explains the sdtDBN program's usage.
+This website contains an overview of the main functionalities of the sdtDBN program and explains the sdtDBN program's usage.
 
 # What are sdtDBNs?
 
 ## Previous Work - tDBNs
 
-The tDBN implementation is a Java program that creates a Dynamic Bayesian Network (DBN) from user multivariate longitudinal data, having polynomial-time complexity in the number of attributes and observations. The complete implementation and functionalities of the tDBN framework are publicly available [here](http://josemonteiro.github.io/tDBN/), being the theoretical background of tDBNs explained in the following article:
+The tDBN implementation is a Java program that creates a Dynamic Bayesian Network (DBN) from user multivariate longitudinal data, having polynomial-time complexity in the number of attributes and observations. The complete implementation and functionalities of the tDBN framework are publicly available at the [tDBN webpage](http://josemonteiro.github.io/tDBN/), being the theoretical background of tDBNs explained in the following article:
 
 
 >José L Monteiro, Susana Vinga, and Alexandra M Carvalho.
@@ -16,17 +16,21 @@ The tDBN implementation is a Java program that creates a Dynamic Bayesian Networ
 
 ## sdtDBNs as an extension of tDBNs
 
-tDBNs only allow learning DBNs using dynamic data and do not allow neither to make inference on the created tDBNs nor to force some restrictions in the learned DBNs' structures. sdtDBNs solve these issues, being an extension of tDBNs, to learn DBNs using both dynamic and static data and allowing the user to make inference on the learned DBNs. In the sdtDBN framework, there can be defined restrictions (prior knowledge) in the learned networks, forcing some desired relations to be mandatory or forbidden.
+tDBNs only allow learning DBNs from dynamic data and do not allow neither to make inference on the created tDBNs nor to make restrictions in the structure of the learned DBNs. The sdtDBN framework solves all these issues, providing the following capabilities not available in the tDBN framework:
+
+  - Learning DBNs from both dynamic and static data;
+  - Allowing a user to make inference on the learned DBNs;
+  - Giving the possibility for a user to define restrictions (prior knowledge) in the learned networks, forcing some relations either to exist or not to exist.
 
 # Theoretical background of sdtDBNs
 
-The sdtDBN program was developed in the context of the Master's Thesis in Electrical and Computer Engineering of Tiago Leão, at Instituto Superior Técnico, Lisbon. The Thesis is available at **Thesis document or written article yet to be inserted here**, in which all theorical background of sdtDBNs is rigorously explained.
+The sdtDBN program was developed in the context of the Master's Thesis in Electrical and Computer Engineering of Tiago Leão, at Instituto Superior Técnico, Lisbon. The Thesis is available at ***Thesis document or written article yet to be inserted here***, in which all theorical background of sdtDBNs is rigorously explained.
 
 # Current release and libraries
 
 ## Current release
 
-The program is currently in its version v0.0.1 and can be downloaded [here](sdtDBN_v0_0_1.jar). The program comes in an executable jar and its usage is explained and exemplified in this webpage.
+The program is currently in its version v0.0.1 and can be downloaded [here](sdtDBN_v0_0_1.jar). The program comes as an executable jar and its usage is explained and exemplified in this webpage.
 
 ## External libraries
 
@@ -43,13 +47,13 @@ While this website explains how to use the sdtDBN program using the command line
 
 # Program usage
 
-The usage of the sdtDBN program can be found by running:
+The usage of the sdtDBN program can be found by running
 
 ```
 java -jar sdtDBN_v0_0_1.jar
 ```
 
-Running the aforementioned command will produce the following usage of the program:
+The previous command will produce the following usage of the program:
 
 ```
 usage: sdtDBN
@@ -229,9 +233,9 @@ usage: sdtDBN
                                                          should be stored.
 ```
 
-The arguments of the previous usage concern all the arguments of the original tDBN program plus the new arguments of the sdtDBN program, for learning DBNs also with static attributes, inserting restrictions in the learned DBNs and to make inference in the learned DBNs.
+The previous usage has all the arguments of the original tDBN program plus the new arguments of the sdtDBN program.
 
-As the [tDBN webpage](http://josemonteiro.github.io/tDBN/) already explains the usage of the proper arguments of the tDBN framework, in this webpage it is described the usage of the arguments introduced in the sdtDBN framework:
+As the [tDBN webpage](http://josemonteiro.github.io/tDBN/) already explains the usage of the proper arguments of the tDBN framework, in this webpage it is described the usage of the arguments used only in the sdtDBN framework, which are the following:
 
 ```
  -b,--numStaticParents <int>                             Maximum number of
@@ -354,19 +358,19 @@ The sdtDBN program learns DBNs with dynamic and static attributes from observati
 
 It is presented next the format of the files with observations of dynamic and static attributes and the format of the file with the attributes in which inference should be made. 
 
-At the end of the webpage there are provided some [Illustrative examples][exMenu]. To get an example about learning an sdtDBN from input data, check [Example 1][ex1]. For an example on how to make inference on certain attributes, check [Example 2][ex2]. To see how to estimate a trajectory of all attributes, check [Example 3][ex3]. To see how to join [Examples 2 and 3][exMenu], check [Example 4][ex4].
+At the end of the webpage there are provided some [Illustrative examples][exMenu]. [Example 1][ex1] shows how to learn an sdtDBN from input data. [Example 2][ex2] provides an example where inference is made on certain attributes. [Example 3][ex3] displays how to estimate a trajectory of all attributes. [Example 4][ex4] joins [Examples 2 and 3][exMenu].
 
 ### Files with observations of dynamic attributes
 
 All files with dynamic attributes should follow the following format:
 
-- The first line should be the header, where the first value must be some identification tag and the remaining values should be each attribute's name together with the proper timestep, in the form "attName__timestep".
-  
-- The order of the attributes and timesteps must conform to the following:
-  - Each timestep must have all its attributes in consecutive positions
-  - The order of the attributes must be the same in all timesteps
+- The first line should be the header, where the first value must be some identification tag and the remaining values should be each attribute's name together with the proper timestep, using the notation "attName__timestep".
+
+  - The order of the attributes and timesteps must obey the following rules:
+    - Each timestep must have all its attributes in consecutive positions;
+    - The order of the attributes must be the same in all timesteps.
   - Example for two attributes and two timesteps: 
-    - attNameX__0, attNameY__0, attNameX__1, attNameY__1
+    - **attNameX__0, attNameY__0, attNameX__1, attNameY__1**
 
 - In each of the remaining lines, the first position must be the subject identifier and the remaining positions must be the values of the attributes in the respective timesteps, in the order defined in the header line.
 
@@ -394,7 +398,7 @@ All files with static attributes should follow the following format:
 - The first line should be the header, where the first value must be some identification tag and the remaining values must be each attribute's name.
   
 - In each of the remaining lines, the first position must be the subject identifier and the remaining positions must be the values of the static attributes, in the order defined in the header line.
-  - It is important for the user to guarantee that every subject in the static file exists, with the same id, in the respective dynamic file:
+  - The user must guarantee that every subject in the static file exists, with the same id, in the respective dynamic file:
       - Subjects in **-is** file should exist in **-i** file;
       - Subjects in **-obsStatic** file should exist in **-obs** file;
       - There may be subjects in the dynamic files that are not in the respective static files, but the opposite cannot be true!
@@ -421,12 +425,12 @@ id,attA,attC,attD,attW
 The file with the variables and respective timesteps in which inference should be made must follow the following format:
 
 - There must be two values per line, separated by ",":
-  - The first value should be the dynamic attribute name;
+  - The first value should be the dynamic attribute's name;
   - The second value should be the timestep.
 
-- All attributes names specified in this file must exist in the dynamic attributes files. The timesteps may not exist in the dynamic attributes files: in that case, if the learned network was defined to be stationary, values will be predicted until the specified timestep, according to the learned network structure.
+- All attributes' names specified in this file must exist in the dynamic attributes files. The timesteps may not exist in the dynamic attributes files: in that case, if the learned network was defined to be stationary, values will be predicted until the specified timestep, according to the learned network structure.
 
-An example file where the program would do inference for **attX\[2\]** and **attY\[3\]** is presented next.
+An example file where the program would make inference for **attX\[2\]** and **attY\[3\]** is presented next.
 
 ```
 attX,2
@@ -460,13 +464,13 @@ The files with restrictions on parents in the same timestep or on static parents
 - There must be at least three values per line, separated by ",":
   - The first value should be the timestep of the child node being considered;
   - The second value should be the name of the attribute of the child node being considered;
-  - Each remaining value (at least one) should be the name of an attribute that either must be or cannot be parent of the node specified by the first two values of the line.
+  - Each remaining value should be the name of an attribute that either must be or cannot be parent of the node specified by the first two values of the line.
 
-- All nodes specified in this file should be valid (the names of the attributes must have been specified in the dynamic or static attributes files and the timesteps must be valid timesteps of the sdtDBN to be learned).
+- All nodes specified in this file should be valid (the names of the attributes must have been specified in the dynamic or static attributes' files and the timesteps must be valid timesteps of the sdtDBN to be learned).
 
 The same file can specify either forbidden or mandatory relations, according to the argument of the program in which the file is introduced. 
 
-Assuming **attX** and **attY** as dynamic attributes and **attA** and **attB** as static attributes, some examples are given next.
+Using **attX** and **attY** as dynamic attributes and **attA** and **attB** as static attributes, some examples are given next.
 
 Regarding restrictions on parents from the same timestep, a file having the lines
 
@@ -496,7 +500,7 @@ refers to the following relations:
 - **attB 🠪 attX\[2\]**;
 - **attB 🠪 attY\[3\]**.
 
-Then, according to the argument in which the file is inserted, it can define one of two options:
+According to the argument in which the file is inserted, it can define one of two options:
   - If provided as the argument with forbidden static parents, it would define that the relations could not exist;
   - If provided as the argument with mandatory static parents, it would define that the relations had to exist;
 
@@ -510,11 +514,11 @@ The files with restrictions on parents from previous timesteps should follow the
   - The second value should be the name of the attribute of the child node being considered;
   - The remaining values should be given as pairs, where:
     - The first element of each pair should be the name of the attribute that either must be or cannot be parent of the node specified by the first two values of the line.
-    - The second element of each pair should define "how many timesteps is the parent behind the child". Rigorously: the distance between the child node timestep (first value of the line) and the timestep of the parent to which the restriction applies.
+    - The second element of each pair should define "how many timesteps is the parent behind the child". Rigorously: the distance between the child node's timestep (first value of the line) and the timestep of the parent to which the restriction applies.
 
-- Each line must have an even number of values (the first two define the child node and each parent node from previous timesteps is always defined by a pair of values).
+- Each line must have an even number of values (the first two define the child node and each parent node from previous timesteps is defined by a pair of values).
 
-- All nodes specified in this file should be valid (the names of the attributes must have been specified in the dynamic attributes file and the timesteps must be valid timesteps of the sdtDBN to be learned).
+- All nodes specified in this file should be valid (the names of the attributes must have been specified in the dynamic attributes' file and the timesteps must be valid timesteps of the sdtDBN to be learned).
 
 - The distance between nodes must be an integer value with absolute value between 1 and the Markov lag (including both 1 and the Markov lag). This distance can be given as a positive or negative number (the program always uses the absolute value).
 
@@ -533,7 +537,7 @@ refers to the following relations:
 - **attX\[2\] 🠪 attY\[3\]**;
 - **attY\[2\] 🠪 attY\[3\]**.
 
-Then, according to the argument in which the file is inserted, it can define one of two options:
+According to the argument in which the file is inserted, it can define one of two options:
   - If provided as the argument with forbidden parents from previous timesteps, it would define that the relations could not exist;
   - If provided as the argument with mandatory parents from previous timesteps, it would define that the relations had to exist;
 
@@ -541,7 +545,7 @@ Then, according to the argument in which the file is inserted, it can define one
 #### Arguments that allow the user to make restrictions in the relations of the sdtDBN 
 
 - **-mA_dynPast**: File specifying, for any desired node of the sdtDBN, the nodes that must be its parents from previous timesteps.
-- **-mA_dynSame**: File specifying, for any desired node of the sdtDBN, the node that must be its parent from the same timestep (only one node, because the intra-slice connectivity must be a tree. If, for a certain node, the user specifies more than one parent of the same timestep, the program chooses the connection that maximizes the score of the sdtDBN).
+- **-mA_dynSame**: File specifying, for any desired node of the sdtDBN, the node that must be its parent from the same timestep (only one node, because the intra-slice connectivity must be a tree. If, for a certain node, the user specifies more than one mandatory parent of the same timestep, the program chooses the connection that maximizes the global score of the sdtDBN).
 - **-mA_static**: File specifying, for any desired node of the sdtDBN, the nodes that must be its static parents.
 - **-mNotA_dynPast**: File specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from previous timesteps.
 - **-mNotA_dynSame**: File specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from the same timestep.
@@ -552,27 +556,27 @@ Then, according to the argument in which the file is inserted, it can define one
 
 When making inference on an sdtDBN, the user may desire to make inference multiple times, while keeping the same sdtDBN. In this situation, there is no need for the program to learn the sdtDBN each time the user makes inference, as the sdtDBN stays the same. 
 
-In order to allow a user to perform inference several times in the same learned sdtDBN, two arguments were created: **-toFile** and **-fromFile**. Each of these arguments consists of a filename.
+In order to allow a user to perform inference several times on the same learned sdtDBN, two arguments were created: **-toFile** and **-fromFile**, each one being a filename.
 
-The argument **-toFile**, when given, will save the sdtDBN object (by serializing it) in a file with the name given in this argument. 
-- For example, if specified **-toFile obj_example_out.txt**, the program saves the sdtDBN object in the file **obj_example_out.txt**, for future use.
+The argument **-toFile**, when given, saves the sdtDBN object (by serializing it) in a file with the name given in this argument. 
+- For example, if specified **-toFile obj_example_out.txt**, the program saves the object with the learned sdtDBN in the file **obj_example_out.txt**, for future use.
 
-The argument **-fromFile**, when given, will get the sdtDBN object from the file with the name given in this argument. 
-- For example, if specified **-fromFile obj_example_in.txt**, the program reads the sdtDBN object from the file **obj_example_in.txt** (ignoring, if given, all other program arguments related to sdtDBN structure and parameter learning).
+The argument **-fromFile**, when given, gets the sdtDBN object from the file with the name given in this argument. 
+- For example, if specified **-fromFile obj_example_in.txt**, the program reads the sdtDBN object from the file **obj_example_in.txt** (ignoring, if given, all other program's arguments related to sdtDBN structure and parameter learning).
 
-To get an example regarding storing and reading an sdtDBN from a file, check [Example 5][ex5]. 
+To get an example regarding storing and reading an sdtDBN to/from a file, check [Example 5][ex5]. 
 
 # Illustrative examples
 [exMenu]: #illustrative-examples
 
 The examples provided next were already mentioned in the explanations of the proper input files. The examples cover the following situations:
 
-1. [Example 1][ex1] illustrates how to learn an sdtDBN from input data;
+1. [Example 1][ex1] illustrates how to learn an sdtDBN from input data with dynamic and static observations;
 2. [Example 2][ex2] allows to understand how to make inference on desired attributes;
 3. [Example 3][ex3] presents how to estimate a trajectory of all attributes;
 4. [Example 4][ex4] combines Examples 2 and 3;
 5. [Example 5][ex5] shows how to store an sdtDBN in a file and how to retrieve an sdtDBN stored in a file;
-6. [Example 6][ex6] offers a situation where the sdtDBN is learned with restrictions.  
+6. [Example 6][ex6] offers a situation where the sdtDBN is learned with restrictions.
 
 ## Example 1: Learning an sdtDBN with dynamic and static attributes
 [ex1]: #example-1-learning-an-sdtdbn-with-dynamic-and-static-attributes
@@ -581,16 +585,16 @@ This example focuses on the learning component of the program, introducing how t
 
 The files used for this example are the following:
 
-- [example1_dynamic.csv](example1_dynamic.csv): File with dynamic attributes for learning;
-- [example1_static.csv](example1_static.csv): File with static attributes for learning.
+- [example1_dynamic.csv](example1_dynamic.csv): File with observations of dynamic attributes for learning;
+- [example1_static.csv](example1_static.csv): File with observations of static attributes for learning.
 
-To learn an sdtDBN with markovLag = 1, a maximum of 1 dynamic parent from the previous time slice and a maximum of 1 static parent per node, the following command can be run:
+To learn a stationary sdtDBN with markovLag = 1, a maximum of 1 dynamic parent from the previous time slice and a maximum of 1 static parent per node, the following command can be run:
 
 ```
 java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1
 ```
 
-The obtained output is:
+The obtained output when running the previous command line is:
 
 ```
 Evaluating network with LL score.
@@ -609,7 +613,7 @@ x -> a[1]
 z -> b[1]
 ```
 
-To get a graphical representation if the learned sdtDBN, the argument **-d** can be used, just as in the tDBN framework, as illustrated next:
+To get a graphical representation of the learned sdtDBN, the argument **-d** can be used, just as in the tDBN framework, as illustrated next:
 
 ```
 java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -d | dot -Tpng -o fig_example1.png
@@ -662,30 +666,30 @@ b: [0.0, 1.0]
 [z=1.0, a[0]=1.0]: 0.500 0.500
 ```
 
-## Example 2: Inference of specific attributes on a learned sdtDBN with dynamic and static attributes
-[ex2]: #example-2-inference-of-specific-attributes-on-a-learned-sdtdbn-with-dynamic-and-static-attributes
+## Example 2: Inference on specific attributes of a learned sdtDBN with dynamic and static attributes
+[ex2]: #example-2-inference-on-specific-attributes-of-a-learned-sdtdbn-with-dynamic-and-static-attributes
 
-Following the sdtDBN learned in [Example 1][ex1], inference can be made in that sdtDBN. In this example, it is explained how to make inference on a specific attribute at a specific timestep.
+Following the sdtDBN learned in [Example 1][ex1], inference can be made on that sdtDBN. In this example, it is explained how to make inference on a specific attribute at a specific timestep.
 
 The files used for this example are the following:
 
-- [example1_dynamic.csv](example1_dynamic.csv): File with dynamic attributes for learning;
-- [example1_static.csv](example1_static.csv): File with static attributes for learning;
+- [example1_dynamic.csv](example1_dynamic.csv): File with observations of dynamic attributes for learning;
+- [example1_static.csv](example1_static.csv): File with observations of static attributes for learning;
 - [example2_dynamic_inf.csv](example2_dynamic_inf.csv): File with the dynamic observations of the subjects where inference is to be made;
 - [example2_static_inf.csv](example2_static_inf.csv): File with the static observations of the subjects where inference is to be made;
 - [example2_infVars.csv](example2_infVars.csv): File with the dynamic attributes and respective timesteps where the user desires to make inference for the given subjects.
 
 When making inference, one of three inference modes can be selected with the argument **-infFmt**:
 
-- **-infFmt distrSampl**: This mode will present, for each attribute\[timestep\] where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), a randomly sampled value for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)). 
-  - Each value is randomly sampled according to the probability distribution of each attribute\[timestep\], given the observations of the proper subject.
+- **-infFmt distrSampl**: This mode will present, for each **attribute\[timestep\]** where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), a randomly sampled value for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)). 
+  - Each value is randomly sampled according to the probability distribution of each **attribute\[timestep\]**, given the observations of the proper subject.
 
-- **-infFmt mostProb**: This mode will present, for each attribute\[timestep\] where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), the most probable value for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)).
+- **-infFmt mostProb**: This mode will present, for each **attribute\[timestep\]** where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), the most probable value for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)).
 
-- **-infFmt distrib**: This mode will present, for each attribute\[timestep\] where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), the conditional distribution of the learned network, for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)). 
-  - In intermediate nodes, the values are estimated by getting a random sample of the node's value, according to its probability distribution, given the observations the proper subject.
+- **-infFmt distrib**: This mode will present, for each **attribute\[timestep\]** where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), the conditional distribution of the learned network, for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)). 
+  - In intermediate nodes, the values are estimated by getting a random sample of the node's value, according to its probability distribution, given the observations of the proper subject.
 
-If there are cases where inference is not possible because the parent nodes' values are not given in the observations files and cannot be determined by the model, the program will inform that inference is not possible on those specific cases, producing **null** (in **-infFmt mostProb**) or **-1** (in **-infFmt distrib**).
+If there are cases where inference is not possible because the parent nodes' values are not given in the observations' files and cannot be determined by the model, the program will inform that inference is not possible on those specific cases, producing **null** (in **-infFmt mostProb**) or **-1** (in **-infFmt distrib**).
 
 If specifying **-infFmt distrSampl**, the following command line should be inserted:
 
@@ -811,19 +815,19 @@ would write the inference output to the file [outputExample2.csv](outputExample2
 ## Example 3: Getting an estimated trajectory
 [ex3]: #example-3-getting-an-estimated-trajectory
 
-Also following the sdtDBN learned in [Example 1][ex1], it is explained in this example how the user can estimate a trajectory of all attributes until a certain timestep, given certain observations of subjects.
+Also following the sdtDBN learned in [Example 1][ex1], it is explained in this example how the user can estimate a trajectory of all attributes until a certain timestep, given observations of some subjects.
 
 The files used for this example are the following:
 
-- [example1_dynamic.csv](example1_dynamic.csv): File with dynamic attributes for learning;
-- [example1_static.csv](example1_static.csv): File with static attributes for learning;
+- [example1_dynamic.csv](example1_dynamic.csv): File with observations of dynamic attributes for learning;
+- [example1_static.csv](example1_static.csv): File with observations of static attributes for learning;
 - [example2_dynamic_inf.csv](example2_dynamic_inf.csv): File with the dynamic observations of the subjects where inference should be made;
 - [example2_static_inf.csv](example2_static_inf.csv): File with the static observations of the subjects where inference should be made.
 
-To get the trajectories, the user needs to define the maximum timestep in the argument **-t**. 
+To get the estimated trajectories, the user needs to define the maximum timestep in the argument **-t**. 
 
 The user can also use the argument **-infFmt** to specify how the values of the nodes are determined from the probability distributions. 
-  - If using **-infFmt mostProb**, the values selected for each node are always the most probable given the observations of each subject. 
+  - If using **-infFmt mostProb**, the values selected for each node are always the most probable ones, given the observations of each subject. 
   - Otherwise, the values are randomly sampled according to the probability distribution of each node, given the observations of each subject. 
 
 For example, if the user wants to determine the most probable trajectory of all attributes until **timestep 5**, the following command can be inserted:
@@ -832,7 +836,7 @@ For example, if the user wants to determine the most probable trajectory of all 
 java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -t 5 -infFmt mostProb
 ```
 
-The previous comand would provide the following output:
+The previous command would provide the following output:
 
 ```
 Evaluating network with LL score.
@@ -857,7 +861,7 @@ id,a__0,b__0,a__1,b__1,a__2,b__2,a__3,b__3,a__4,b__4,a__5,b__5
 3,0.0,,,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0
 ```
 
-As can be seen in **b\[0\]** and in **a\[1\]** of **subject 3**, the program does not provide any estimations where those estimations cannot be determined (if the parent nodes are not specified in the observations and cannot be estimated by the model).
+As can be seen in **b\[0\]** and **a\[1\]** of **subject 3**, the program does not provide any estimations where those estimations cannot be determined (if the parent nodes are not specified in the observations and cannot be estimated by the model).
 
 If wanting the output of the estimated trajectories to be written to a specific file, the user needs to give the file to be created in the **-tf** argument. For example,
 
@@ -867,8 +871,8 @@ java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1
 
 would write the estimated trajectories to the file [outputExample3.csv](outputExample3.csv) (creating it if needed).
 
-## Example 4: Getting an estimated trajectory and also making inference of specific attributes
-[ex4]: #example-4-getting-an-estimated-trajectory-and-also-making-inference-of-specific-attributes
+## Example 4: Getting an estimated trajectory and also making inference on specific attributes
+[ex4]: #example-4-getting-an-estimated-trajectory-and-also-making-inference-on-specific-attributes
 
 The program allows the user to do [Examples 2 and 3][exMenu] at the same time. For example, by running
 
@@ -908,7 +912,7 @@ id,a[1],a[3],b[4],b[1]
 
 which is the combined output of [Examples 2 and 3][exMenu].
 
-The user may also specify two different output files, one for the result of the inference on certain attributes and the other for the output of the estimated trajectories. This is done by using simultaneosly the arguments specified in [Examples 2 and 3][exMenu], **-outInf** and **-tf**, respectively. For example,
+The user may also specify two different output files, one for the result of the inference on certain attributes and the other for the output of the estimated trajectories. This can be done by using simultaneously the arguments specified in [Examples 2 and 3][exMenu], **-outInf** and **-tf**, respectively. For example,
 
 ```
 java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb -t 5 -outInf outputExample2.csv -tf outputExample3.csv
@@ -922,9 +926,9 @@ would write the respective outputs to the files [outputExample2.csv](outputExamp
 
 As explained previously in the webpage, the argument **-toFile** allows an sdtDBN object to be stored in a file, while the argument **-fromFile** allows an sdtDBN object to be read from a file. This example explains how to use these two arguments.
 
-Regarding the argument **-toFile**, every time this argument is used, the sdtDBN learned is saved in the according file. When this argument is used, the program always learns the sdtDBN parameters, so that the file where the sdtDBN is saved also has the proper parameters of the learned sdtDBN.
+Regarding the argument **-toFile**, every time this argument is used, the learned sdtDBN is saved in the according file. When this argument is used, the program always learns the sdtDBN's parameters, so that the file where the sdtDBN is saved also has the proper parameters of the learned sdtDBN.
 
-Regarding the argument **-fromFile**, every time this argument is used, the program uses the sdtDBN stored in the according file. This sdtDBN can then be used to perform inference, as explained in the previous examples.
+Regarding the argument **-fromFile**, every time this argument is used, the program retrieves the sdtDBN object stored in the according file. This sdtDBN can then be used to perform inference, as explained in the previous examples.
 
 Following [Example 1][ex1], where an sdtDBN was learned, the argument **-toFile** can be used to save the learned sdtDBN in a file. Therefore, by running
 
@@ -934,13 +938,13 @@ java -jar sdtDBN_v0_0_1.jar -i example1_dynamic.csv -is example1_static.csv -p 1
 
 the program does everything explained in [Example 1][ex1] and saves the learned sdtDBN in a file named **obj_saved.txt**, which the program creates.
 
-Having this sdtDBN object saved in a file, the argument **-fromFile** can be used to retrieve the saved sdtDBN. For example, by running 
+Having this sdtDBN object saved in a file, the argument **-fromFile** can be used to retrieve the sdtDBN. For example, by running 
 
 ```
 java -jar sdtDBN_v0_0_1.jar -fromFile obj_saved.txt
 ```
 
-the program would output the sdtDBN stored in the file **obj_saved.txt**, which means the output would be the same as the output presented in [Example 1][ex1] (plus the parameters of the learned sdtDBN).
+the program would output the sdtDBN stored in the file **obj_saved.txt**, which means that the output would be the same as the output presented in [Example 1][ex1] (plus the parameters of the learned sdtDBN).
 
 The arguments **-toFile** and **-fromFile** can be combined with the several situations presented in the previous examples.
 
@@ -967,7 +971,7 @@ This generalizes to situations where inference is made. For example, if there is
 java -jar sdtDBN_v0_0_1.jar -fromFile someSavedDBN.txt -i example1_dynamic.csv -is example1_static.csv -p 1 -s ll -m 1 -b 1 -obs example2_dynamic_inf.csv -obsStatic example2_static_inf.csv -inf example2_infVars.csv -infFmt mostProb -t 5
 ```
 
-the output would not be the same as the output of [Example 4][ex4]. Because the **-fromFile** argument is given, the program reads the sdtDBN stored in the file **someSavedDBN.txt**, thus ignoring the arguments **-i**, **-is**, **-p**, **-s**, **-m** and **-b**, as these arguments are relative to sdtDBN structure and parameter learning.
+the output would not be the same as the output of [Example 4][ex4], because the **-fromFile** argument is given, so the program reads the sdtDBN stored in the file **someSavedDBN.txt**, thus ignoring the arguments **-i**, **-is**, **-p**, **-s**, **-m** and **-b**, as these arguments are relative to sdtDBN structure and parameter learning.
 
 ## Example 6: Learning an sdtDBN with restrictions
 [ex6]: #example-6-learning-an-sdtdbn-with-restrictions
@@ -976,10 +980,10 @@ This example demonstrates how to introduce constraints in the network structure 
 
 The files used for this example are the following:
 
-- [example6_dynamic.csv](example6_dynamic.csv): File with dynamic attributes for learning;
-- [example6_static.csv](example6_static.csv): File with static attributes for learning;
+- [example6_dynamic.csv](example6_dynamic.csv): File with observations of dynamic attributes for learning;
+- [example6_static.csv](example6_static.csv): File with observations of static attributes for learning;
 - [example6_mandatory_dynPast.csv](example6_mandatory_dynPast.csv): File specifying, for any desired node of the sdtDBN, the nodes that must be its parents from previous timesteps;
-- [example6_mandatory_dynSame.csv](example6_mandatory_dynSame.csv): File specifying, for any desired node of the sdtDBN, the nodes that must be its parents from the same timestep;
+- [example6_mandatory_dynSame.csv](example6_mandatory_dynSame.csv): File specifying, for any desired node of the sdtDBN, the node that must be its parent from the same timestep;
 - [example6_mandatory_static.csv](example6_mandatory_static.csv): File specifying, for any desired node of the sdtDBN, the nodes that must be its static parents;
 - [example6_forbidden_dynPast.csv](example6_forbidden_dynPast.csv): File specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from previous timesteps;
 - [example6_forbidden_dynSame.csv](example6_forbidden_dynSame.csv): File specifying, for any desired node of the sdtDBN, the nodes that cannot be its parents from the same timestep;
