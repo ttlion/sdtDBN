@@ -6,7 +6,7 @@ This website contains an overview of the main functionalities of the sdtDBN impl
 
 ## Previous Work - tDBNs
 
-The tDBN implementation is a Java program that creates a Dynamic Bayesian Network (DBN) from user multivariate longitudinal data, having polynomial-time complexity in the number of attributes and observations. The complete implementation and functionalities of the tDBN framework are publicly available at the [tDBN webpage](http://josemonteiro.github.io/tDBN/), being the theoretical background of tDBNs explained in the following article:
+The tDBN implementation is a Java program that creates a Dynamic Bayesian Network (DBN) from user's multivariate longitudinal data, having polynomial-time complexity in the number of attributes and observations. The complete implementation and functionalities of the tDBN framework are publicly available at the [tDBN webpage](http://josemonteiro.github.io/tDBN/), being the theoretical background of tDBNs explained in the following article:
 
 
 >José L Monteiro, Susana Vinga, and Alexandra M Carvalho.
@@ -24,7 +24,7 @@ tDBNs only allow learning DBNs from dynamic data and do not allow neither to mak
 
 # Theoretical background of sdtDBNs
 
-The sdtDBN program was developed in the context of the Master's Thesis in Electrical and Computer Engineering of Tiago Leão, at Instituto Superior Técnico, Lisbon. The Thesis is available at ***Thesis document or written article yet to be inserted here***, in which all theorical background of sdtDBNs is rigorously explained.
+The sdtDBN program was developed in the context of the Master's Thesis in Electrical and Computer Engineering of Tiago Leão, at Instituto Superior Técnico, Lisbon. The Thesis is available at ***Thesis document or written article yet to be inserted here***, in which all theoretical background of sdtDBNs is rigorously explained.
 
 # Current release and external libraries
 
@@ -45,7 +45,7 @@ Just as the tDBN implementation, the sdtDBN implementation uses two external lib
 
 While this website explains how to use the sdtDBN program using the command line, there is also a GUI available. Check [https://ttlion.github.io/sdtDBNsGUI/](https://ttlion.github.io/sdtDBNsGUI/), where details on how to use the developed GUI are provided, together with the most recent version of the GUI.
 
-# Program usage
+# Program's usage
 
 The usage of the sdtDBN program can be found by running
 
@@ -354,7 +354,7 @@ All input files must be given as CSV files (comma-separated values).
 
 ## Input files to learn an sdtDBN from data and make inference in the learned sdtDBN
 
-The sdtDBN program learns DBNs with dynamic and static attributes from observations of several attributes, finding the relations that maximize a certain score. With an sdtDBN learned, inference can be made, to estimate the values of the attributes in certain timesteps. 
+The sdtDBN program learns DBNs with dynamic and static attributes from observations of several attributes, finding the relations that maximize a desired score. With an sdtDBN learned, inference can be made, to estimate the values of the attributes in certain timesteps. 
 
 It is presented next the format of the files with observations of dynamic and static attributes and the format of the file with the attributes in which inference should be made. 
 
@@ -362,7 +362,7 @@ At the end of the webpage, there are provided some [Illustrative examples][exMen
 
 ### Files with observations of dynamic attributes
 
-All files with observations of dynamic attributes should follow the following format:
+All files with observations of dynamic attributes should be in the following format:
 
 - The first line should be the header, where the first value must be some identification tag and the remaining values should be each attribute's name together with the proper timestep, using the notation "attName__timestep";
 
@@ -372,7 +372,7 @@ All files with observations of dynamic attributes should follow the following fo
   - Example for two attributes and two timesteps: 
     - **id,attNameX__0,attNameY__0,attNameX__1,attNameY__1**
 
-- In each of the remaining lines, the first position must be the subject identifier and the remaining positions must be the values of the attributes in the respective timesteps, in the order defined in the header line;
+- In each of the remaining lines, the first position must be the subject's identifier and the remaining positions must be the values of the attributes in the respective timesteps, in the order defined in the header line;
 
 - Missing values should be marked either by not writing anything or by putting "?".
 
@@ -393,7 +393,7 @@ id,attX__0,attY__0,attX__1,attY__1,attX__2,attY__2
 
 ### Files with observations of static attributes
 
-All files with observations of static attributes should follow the following format:
+All files with observations of static attributes should be in the following format:
 
 - The first line should be the header, where the first value must be some identification tag and the remaining values must be each attribute's name;
   
@@ -415,14 +415,14 @@ id,attA,attC,attD,attW
 
 #### Arguments that use files with observations of static attributes
 
-- **-is**: File with the static observations used to learn the DBN. If not given, the program will learn a tDBN, without static features. If given, the program will learn an sdtDBN, with static and dynamic features;
+- **-is**: File with the static observations used to learn the DBN. If not given, the program will learn a tDBN, without static attributes. If given, the program will learn an sdtDBN, with both static and dynamic attributes;
 
 - **-obsStatic**: File with static observations of the subjects in which inference is going to be made.
 
 
 ### File with variables and respective timesteps to make inference
 
-The file with the variables and respective timesteps in which inference should be made must follow the following format:
+The file with the variables and respective timesteps in which inference should be made must be in the following format:
 
 - There must be two values per line, separated by ",":
   - The first value should be the dynamic attribute's name;
@@ -445,7 +445,7 @@ attY,3
 
 ## Input files to make restrictions in the relations of the sdtDBN
 
-The user may desire to obtain the sdtDBN that maximizes a certain score when considering only the sdtDBNs structures that include some restrictions in the relations between nodes. 
+The user may desire to obtain the sdtDBN that maximizes a certain score when considering only the sdtDBNs structures that include some restrictions in the relations between the nodes. 
 
 There are three types of relations in an sdtDBN: 
 1. Relations between dynamic nodes in different timesteps;
@@ -459,7 +459,7 @@ The structure of the files used to make restrictions in the network is presented
 
 #### Files with restrictions on parents in the same timestep or on static parents
 
-The files with restrictions on parents in the same timestep or on static parents should follow the following format:
+The files with restrictions on parents in the same timestep or on static parents should be in the following format:
 
 - There must be at least three values per line, separated by ",":
   - The first value should be the timestep of the child node being considered;
@@ -502,12 +502,12 @@ refers to the following relations:
 
 According to the argument in which the file is inserted, it can define one of two options:
   - If provided as the argument with forbidden static parents, it would define that the relations could not exist;
-  - If provided as the argument with mandatory static parents, it would define that the relations had to exist;
+  - If provided as the argument with mandatory static parents, it would define that the relations had to exist.
 
 
 #### Files with restrictions on parents from previous timesteps
 
-The files with restrictions on parents from previous timesteps should follow the following format:
+The files with restrictions on parents from previous timesteps should be in the following format:
 
 - There must be at least four values per line, separated by ",":
   - The first value should be the timestep of the child node being considered;
@@ -562,7 +562,7 @@ The argument **-toFile**, when given, saves the sdtDBN object (by serializing it
 - For example, if specified **-toFile obj_example_out.txt**, the program saves the object with the learned sdtDBN in the file **obj_example_out.txt**, for future use.
 
 The argument **-fromFile**, when given, gets the sdtDBN object from the file with the name given in this argument. 
-- For example, if specified **-fromFile obj_example_in.txt**, the program reads the sdtDBN object from the file **obj_example_in.txt** (ignoring, if given, all other program's arguments related to sdtDBN structure and parameter learning).
+- For example, if specified **-fromFile obj_example_in.txt**, the program reads the sdtDBN object from the file **obj_example_in.txt** (ignoring, if given, all other program's arguments related to sdtDBN's structure and parameter learning).
 
 To get an example regarding storing and reading an sdtDBN to/from a file, check [Example 5][ex5]. 
 
@@ -581,7 +581,7 @@ The examples provided next were already mentioned in the explanations of the pro
 ## Example 1: Learning an sdtDBN with dynamic and static attributes
 [ex1]: #example-1-learning-an-sdtdbn-with-dynamic-and-static-attributes
 
-This example focuses on the learning component of the program, introducing how to learn a DBN also with static attributes (original tDBN framework only learned networks with dynamic attributes). 
+This example focuses on the learning component of the program, showing how to learn a DBN also with static attributes (original tDBN framework only learned networks with dynamic attributes). 
 
 The files used for this example are the following:
 
@@ -686,7 +686,7 @@ When making inference, one of three inference modes can be selected with the arg
 
 - **-infFmt mostProb**: This mode will present, for each **attribute\[timestep\]** where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), the most probable value for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv));
 
-- **-infFmt distrib**: This mode will present, for each **attribute\[timestep\]** where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), the conditional distribution of the learned network, for each subject specified (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)). 
+- **-infFmt distrib**: This mode will present, for each **attribute\[timestep\]** where inference was defined (file [example2_infVars.csv](example2_infVars.csv)), the conditional distribution of the learned network, for each subject specified, given the observations of the proper subject (files [example2_dynamic_inf.csv](example2_dynamic_inf.csv) and [example2_static_inf.csv](example2_static_inf.csv)). 
   - In intermediate nodes, the values are estimated by getting a random sample of the node's value, according to its probability distribution, given the observations of the proper subject.
 
 If there are cases where inference is not possible because the parent nodes' values are not given in the observations' files and cannot be determined by the model, the program will inform that inference is not possible on those specific cases, producing **null** (in **-infFmt mostProb**) or **-1** (in **-infFmt distrib**).
