@@ -1,6 +1,6 @@
-# Website description 
+# Webpage description 
 
-This website contains an overview of the main functionalities of the sdtDBN implementation and explains the sdtDBN program's usage.
+This webpage contains an overview of the main functionalities of the sdtDBN implementation and explains the sdtDBN program's usage.
 
 # What are sdtDBNs?
 
@@ -43,7 +43,7 @@ Just as the tDBN implementation, the sdtDBN implementation uses two external lib
 
 # Graphical User Interface (GUI) of the sdtDBN program
 
-While this website explains how to use the sdtDBN program using the command line, there is also a GUI available. Check [https://ttlion.github.io/sdtDBNsGUI/](https://ttlion.github.io/sdtDBNsGUI/), where details on how to use the developed GUI are provided, together with the most recent version of the GUI.
+While this webpage explains how to use the sdtDBN program using the command line, there is also a GUI available. Check [https://ttlion.github.io/sdtDBNsGUI/](https://ttlion.github.io/sdtDBNsGUI/), where details on how to use the developed GUI are provided, together with the most recent version of the GUI.
 
 # Program's usage
 
