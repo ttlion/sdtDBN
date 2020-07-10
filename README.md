@@ -496,7 +496,7 @@ Regarding restrictions on static parents, a file having the lines
 ```
 
 refers to the following relations:
-- **attA 🠪 attX\[2\]**;
+- **attA 🠚 attX\[2\]**;
 - **attB 🠪 attX\[2\]**;
 - **attB 🠪 attY\[3\]**.
 
