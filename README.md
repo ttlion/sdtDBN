@@ -480,8 +480,8 @@ Regarding restrictions on parents in the same timestep, a file having the lines
 ```
 
 refers to the following relations:
-- **attY\[2\] 🠪 attX\[2\]**;
-- **attX\[3\] 🠪 attY\[3\]**.
+- **attY\[2\] ⟶ attX\[2\]**;
+- **attX\[3\] ⟶ attY\[3\]**.
 
 According to the argument in which the file is inserted, it can define one of two options:
   - If provided as the argument with forbidden parents from the same timestep, it would define that the relations could not exist;
@@ -497,8 +497,8 @@ Regarding restrictions on static parents, a file having the lines
 
 refers to the following relations:
 - **attA ⟶ attX\[2\]**;
-- **attB 🠪 attX\[2\]**;
-- **attB 🠪 attY\[3\]**.
+- **attB ⟶ attX\[2\]**;
+- **attB ⟶ attY\[3\]**.
 
 According to the argument in which the file is inserted, it can define one of two options:
   - If provided as the argument with forbidden static parents, it would define that the relations could not exist;
@@ -532,10 +532,10 @@ For example, a file having the lines
 ```
 
 refers to the following relations:
-- **attY\[0\] 🠪 attX\[2\]**;
-- **attX\[1\] 🠪 attX\[2\]**;
-- **attX\[2\] 🠪 attY\[3\]**;
-- **attY\[2\] 🠪 attY\[3\]**.
+- **attY\[0\] ⟶ attX\[2\]**;
+- **attX\[1\] ⟶ attX\[2\]**;
+- **attX\[2\] ⟶ attY\[3\]**;
+- **attY\[2\] ⟶ attY\[3\]**.
 
 According to the argument in which the file is inserted, it can define one of two options:
   - If provided as the argument with forbidden parents from previous timesteps, it would define that the relations could not exist;
