@@ -30,7 +30,7 @@ The sdtDBN program was developed in the context of the Master's Thesis in Electr
 
 ## Current release
 
-The program is currently in its version v0.0.1 and can be downloaded [here](sdtDBN_v0_0_1.jar). The program comes as an executable jar and its usage is explained and exemplified in this webpage.
+The program is currently in its version v0.0.1 and can be downloaded [here](sdtDBN_v0_0_1.jar), being released under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). The program comes as an executable jar and its usage is explained and exemplified in this webpage.
 
 ## External libraries
 
