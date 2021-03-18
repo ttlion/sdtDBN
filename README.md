@@ -24,7 +24,17 @@ tDBNs only allow learning DBNs from dynamic data and do not allow neither to mak
 
 # Theoretical background of sdtDBNs
 
-The sdtDBN program was developed in the context of the Master's Thesis in Electrical and Computer Engineering of Tiago Leão, at Instituto Superior Técnico, Lisbon. The Thesis is available at ***Thesis document or written article yet to be inserted here***, in which all theoretical background of sdtDBNs is rigorously explained.
+The sdtDBN program was developed in the context of the Master's Thesis in Electrical and Computer Engineering of Tiago Leão, at Instituto Superior Técnico, Lisbon. The Thesis originated a paper, which is available at https://www.sciencedirect.com/science/article/abs/pii/S1532046421000599, in which the theoretical background of sdtDBNs is rigorously explained and a case-study with ALS disease data is also provided.
+
+# Citation of sdtDBN work
+
+If you use sdtDBNs in your work/research, please cite the paper in which sdtDBNs are rigorously defined:
+
+>Leão, T., Madeira, S.C., Gromicho, M., Carvalho, M. de, Carvalho, A.M.,
+>Learning dynamic Bayesian networks from time-dependent and time-independent data: Unraveling disease progression in Amyotrophic Lateral Sclerosis,
+>*Journal of Biomedical Informatics* (2021), doi: https://doi.org/10.1016/j.jbi.2021.103730
+
+**Note: the paper is still in the journal pre-proof stage. The citation will be updated when the paper is published.**
 
 # Current release and external libraries
 
