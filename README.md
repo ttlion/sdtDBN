@@ -33,7 +33,7 @@ If you use sdtDBNs in your work/research, please cite the paper in which sdtDBNs
 >Tiago Leão, Sara C. Madeira, Marta Gromicho, Mamede de Carvalho, Alexandra M. Carvalho,
 >Learning dynamic Bayesian networks from time-dependent and time-independent data: Unraveling disease progression in Amyotrophic Lateral Sclerosis,
 >Journal of Biomedical Informatics, Volume 117, May 2021, 103730,
->doi: https://doi.org/10.1016/j.jbi.2021.103730
+>doi: [https://doi.org/10.1016/j.jbi.2021.103730](https://doi.org/10.1016/j.jbi.2021.103730)
 
 # Current release and external libraries
 
